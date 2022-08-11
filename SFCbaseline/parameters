@@ -21,7 +21,7 @@ duration 608
 
 iterations 6000
 
-% Path to store simulation log files; if not specified files will be stored on working directory
+% Path to store simulation log files; if not specified, files will be stored on working directory
 
 %path C:\\temp\\
 

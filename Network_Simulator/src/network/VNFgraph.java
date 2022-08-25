@@ -10,7 +10,8 @@ import java.util.Scanner;
 public class VNFgraph {
 
 	int graph[], nodew[], edgew[], nodeacw[], nodesort[];
-	public int edges,nodes, maxnodew, maxedgew, minnodew, minedgew;
+	public int edges,nodes, maxnodew, maxedgew, maxacedgew, minnodew, minedgew;
+	public int capdemand=0, banddemands=0;
 		
 	//default demands in case they are not defined on the VNFgraph
 	int defnodew=1, defedgew=100, cpudemand=0, banddemand=0;
@@ -56,7 +57,8 @@ public class VNFgraph {
 		minnodew=nodew[0];
 		maxnodew=nodew[0];
 		minedgew=edgew[0];
-		maxedgew=nodeacw[0];	
+		maxedgew=edgew[0];
+		maxacedgew=nodeacw[0];	
 		
 		for(int n=1;n<nodew.length;n++) {
 			if(nodew[n]<minnodew) {
@@ -66,8 +68,8 @@ public class VNFgraph {
 				maxnodew=nodew[n];
 			}
 			
-			if(nodeacw[n]>maxedgew) {
-				maxedgew=nodeacw[n];
+			if(nodeacw[n]>maxacedgew) {
+				maxacedgew=nodeacw[n];
 			}
 			
 			cpudemand+=nodew[n];
@@ -76,6 +78,9 @@ public class VNFgraph {
 		for(int m=0;m<edgew.length;m++) {
 			if(edgew[m]<minedgew) {
 				minedgew=edgew[m];
+			}
+			if(edgew[m]>maxedgew) {
+				maxedgew=edgew[m];
 			}
 			banddemand+=edgew[m];
 		}
@@ -238,8 +243,8 @@ public class VNFgraph {
 	}
 	
 	/** get maximum bandwidth demand */
-	public int getmaxedgew() {
-		return maxedgew;
+	public int getmaxacedgew() {
+		return maxacedgew;
 	}
 	
 	/** get minimum capacity demand */

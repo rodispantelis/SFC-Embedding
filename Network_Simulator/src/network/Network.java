@@ -43,6 +43,7 @@ public class Network {
 	boolean printnetstats=false;							//print on screen network statistics
 	boolean reject=false;									//last embedding outcome
 	int requests=0;											//number of requests
+	int successful=0;										//successfully embedded requests
 	
 	Double band=0.0, cpu=0.0, totalcpu=0.0;					//statistics
 	String results="", avcapacity="";
@@ -51,6 +52,9 @@ public class Network {
 	String filename="simulationresult.csv";					//log file name
 	int lastrequestsize=0;
 	String errmess="";										//error message string
+	
+	Double reqrevenue=0.0;										//vnf revenue
+	Double reqcost=0.0;											//embedding cost parameters
 	
 	public Network() {
 		
@@ -93,7 +97,7 @@ public class Network {
 	
 	/** add server link */
 	public void addserverlink(int id, int n1, int n2, int type) {
-		links.set(cod.coder(n1, n2), new Link(cod.coder(n1, n2), n1, n2, type, true));
+		links.set(cod.coder(n1, n2), new Link(cod.coder(n1, n2), n1, n2, type, false));
 	}
 	
 	/** add link */
@@ -560,7 +564,8 @@ public class Network {
 		//revenue of VNF
 		Double revenue=0.0, noderev=0.0, linkrev=0.0;
 		Double wn=1.0;		//weight in the sum of node revenue
-		Double wl=1.0;		//weight in the sum of link revenue
+		Double wl=0.05;		//weight in the sum of link revenue
+		Double wc=0.1;		//weight in the sum of link cost
 
 		//check for cpu capacity constraints
 		
@@ -655,17 +660,32 @@ public class Network {
 			}
 		
 			for(int nl=0;nl<vnfgraph.getedgew().length;nl++) {
-				linkrev+=vnfgraph.getedgew()[nl]/1000.0;
+				if(vnfgraph.getgraph()[nl]==0) {
+					
+				}else if(vnfgraph.getgraph()[nl]==3){
+					linkrev+=2*vnfgraph.getedgew()[nl]/1000.0;
+				}else {
+					linkrev+=vnfgraph.getedgew()[nl]/1000.0;
+				}
 			}
-		
+
 			//sum of embedded VNF-chains
 			embchains++;
 			
 			//revenue of VNF, it accumulates all the node and link capacity demands
 			revenue=(wn*noderev)+(wl*linkrev);
 			embeddedSFCs.add(new SFC(embeddedcpu, embeddedband, duration, vnfgraph.banddemand, inserver));
+			successful++;
+			
+			reqrevenue=revenue;
+			reqcost=(wn*noderev)+(wc*vnftr*(hops*1.0));
 		}else{
 			System.out.println("Embedding rejected.");
+		}
+		
+		if(reject) {
+			reqrevenue=0.0;
+			reqcost=0.0;
 		}
 		
 		if(printSFCstats) {
@@ -706,6 +726,8 @@ public class Network {
 	public void storerejectstats() {
 		requests++;
 		reject=true;
+		reqrevenue=0.0;
+		reqcost=0.0;
 		netstats();
 		storestats();
 	}
@@ -813,18 +835,35 @@ public class Network {
 			inserver+=embeddedSFCs.get(e).getinserver();
 		}
 		
-		results=Integer.toString(requests)+";"+							//request serial number
-				Integer.toString(v)+";"+								//Hosted VNFs
-				Integer.toString(embchains)+";"+						//Embedded Service Function Chains
-				df.format(band)+";"+									//Used bandwidth
-				Integer.toString(l)+";"+								//links number
-				df.format(cpu)+";"+										//Used cpu
-				Integer.toString(a)+";"+								//used servers
-				df.format(rcpu)+";"+									//Remaining cpu
-				df.format(intrarack)+";"+								//intrarrack traffic
-				df.format(outerrack)+";"+								//outerrack traffic
-				df.format((inserver))+";"+								//in-server virtual traffic
-				reject;													//is last embedded rejected?
+		String embresult="accepted";
+		
+		if(reject) {
+			embresult="rejected";
+		}
+		
+		Double c2r=0.0;
+		
+		if(!reject) {
+			c2r=reqcost/reqrevenue;
+		}
+				
+		results=Integer.toString(requests)+";"+					//1.request serial number
+				Integer.toString(v)+";"+						//2.Hosted VNFs
+				Integer.toString(embchains)+";"+				//3.Embedded Service Function Chains
+				df.format(band)+";"+							//4.Used bandwidth
+				df.format(rband)+";"+							//5.Available bandwidth
+				df.format(cpu)+";"+								//6.Used cpu
+				Integer.toString(a)+";"+						//7.used servers
+				df.format(rcpu)+";"+							//8.Remaining cpu
+				df.format(intrarack)+";"+						//9.intra-rack traffic
+				df.format(outerrack)+";"+						//10.inter-rack traffic
+				df.format((inserver))+";"+						//11.intra-server virtual traffic
+				embresult+";"+									//12.is last embedded rejected?
+				df.format((successful*1.0)/(requests*1.0))+";"+	//13.acceptance ratio
+				df.format(reqrevenue)+";"+						//14.request revenue
+				df.format(reqcost)+";"+							//15.embedding cost
+				df.format(c2r);									//16.Cost/Revenue ratio
+				
 		
 		avcapacity=Double.toString(rcpu/getservers());					//network available capacity
 		
@@ -833,13 +872,15 @@ public class Network {
 				+"Hosted VNFs:\t\t"+v+"\n"
 				+"Embedded VNF-chains:\t"+embchains+"\n"
 				+"Used bandwidth:\t\t"+df.format(band)+" Gbps in "+l+" links\n"
-				+"Remaining bandwidth:\t"+rband+" Gbps\n"
+				+"Remaining bandwidth:\t"+df.format(rband)+" Gbps\n"
 				+"Used cpu:\t\t"+df.format(cpu)+" GHz"+" in "+a+" servers\n"
 				+"Remaining cpu:\t\t"+df.format(rcpu)+" GHz\n"
 				+"Intra-rack traffic:\t"+df.format(intrarack)+" Gbps\n"
 				+"Outer-rack traffic:\t"+df.format(outerrack)+" Gbps\n"
-				+"In-server virtual traffic:\t"
-				+df.format(inserver)+" Gbps\n");
+				+"Intra-server traffic:\t"
+				+df.format(inserver)+" Gbps\n"
+				+"acceptance ratio:\t"
+				+df.format((successful*1.0)/(requests*1.0)));
 		}
 	}
 

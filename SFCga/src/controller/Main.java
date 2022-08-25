@@ -29,11 +29,11 @@ public class Main {
 												//network objects
 	int racks=0, switches=0, links=0, servers=0;
 	Codec cod=new Codec();						//Edge Vector coder-decoder
-	String path="C:\\Files\\src\\results\\";
+	String path="";
 	int servperrack=20;							//servers per rack
 	int k=4;									//k parameter; different usage in different topologies
 	int duration=0;								//VNF life cycle duration
-	String filename="simulationresult.csv";
+	String filename="simulationresult-PAGA.csv";
 	Double nodecapacity=20.0;
 	long totalTime;
 	
@@ -50,12 +50,13 @@ public class Main {
 		make.makefattree(k, servperrack);
 		net=make.getnet();
 		net.setpath(path);
+		net.setfilename(filename);
 		
 		for(int s=0;s<net.getservers();s++) {
 			net.getserver(s).setcpu(nodecapacity);
 		}
 		
-		duration=(int)(0.095*nodecapacity*net.getservers());
+		duration=608;
 		System.out.println("SFC duration: "+duration);
 
 		File f = new File(path+filename);

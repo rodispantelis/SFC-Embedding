@@ -50,14 +50,13 @@ public class Make {
 			}
 		}
 
-		//IDs of links between servers
+		//IDs of links between servers and  ToR switches
 		net.links.get(0).settype(0);
 		int le=0;		
 		
 		for(int l1=0;l1<(k*(k/2)*(k/2));l1++) {
 			for(int l2=0;l2<servperrack;l2++) {
 					net.addserverlink(le, (l1+servers), le, 0);
-					//System.out.println(le+"|"+(l1+servers)+"|"+le);
 					le++;
 			}
 		}
@@ -67,9 +66,11 @@ public class Make {
 			for(int i2=0;i2<servperrack;i2++) {
 				for(int i3=0;i3<servperrack;i3++) {
 					if(i2!=i3) {
-						net.links.get(cod.coder(i2, i3)).setintrarack();
-						net.links.get(cod.coder(i2, i3)).settype(0);
-						net.links.get(cod.coder(i2, i3)).setcapacity(1.0);
+						int ii2=(i1*servperrack)+i2;
+						int ii3=(i1*servperrack)+i3;
+						net.links.get(cod.coder(ii2, ii3)).setintrarack();
+						net.links.get(cod.coder(ii2, ii3)).settype(0);
+						net.links.get(cod.coder(ii2, ii3)).setcapacity(1.0);
 					}
 				}
 			}

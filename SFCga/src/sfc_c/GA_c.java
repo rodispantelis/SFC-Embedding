@@ -1,7 +1,5 @@
 package sfc_c;
 import java.util.ArrayList;
-
-import greedy.Greedy;
 import sfc_a.Mapping;
 
 public class GA_c {
@@ -27,10 +25,6 @@ public class GA_c {
 	String phynetfile=path+" ";
 	String celnetfileEV=path+" ";
 	String phynetfileEV=path+" ";
-	
-	//add greedy result to pop
-	boolean addmgr=false;	
-	boolean usegreed=false;
 	
 	//use population generation heuristic
 	boolean popgenheuristic=true;
@@ -87,8 +81,6 @@ public class GA_c {
 	      
 		long startTime = System.nanoTime();
 		
-		grsim();
-		
 		best=new Best_c(cnodes);
 		best2=new Best_c(cnodes);
 		
@@ -133,21 +125,6 @@ public class GA_c {
 				multymutation(1);
 				selection();
 			}
-		}
-	}
-	
-	public void grsim() {
-		
-		Greedy greed=new Greedy(pnet);
-		greed.getrequest(cnet);
-		greed.compute();			
-		
-		if(!greed.isrejected()) {
-			int[] basemapping=greed.getmapping();/////////////////////////////
-			mgr=new Mapping_c(basemapping);
-			addmgr=true;
-		}else {
-			addmgr=false;
 		}
 	}
 
@@ -372,11 +349,6 @@ public class GA_c {
 			if(g<pop.length){
 				pop[g]=map;
 			}
-		}
-
-		if(addmgr && usegreed) {
-				pop[pop.length-1]=mgr;
-			addmgr=false;
 		}
 		
 		genfit1(pop);

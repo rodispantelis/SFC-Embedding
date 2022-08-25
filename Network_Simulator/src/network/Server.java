@@ -5,8 +5,8 @@ package network;
 public class Server {
 	int id;
 	int rackid;
-	Double cpu=0.0;			//GHz
-	Double cpuload=0.0;		//GHz
+	Double cpu=0.0;			//total server capacity in GHz
+	Double cpuload=0.0;		//total CPU load in GHz
 	Double memory=0.0;		//GBytes
 	Double memload=0.0;		//GBytes
 	Double storage=0.0;		//GBytes
@@ -51,7 +51,7 @@ public class Server {
 		vnfcnter-=rem;
 	}
 	
-	/** set CPU */
+	/** set total CPU capacity */
 	public void setcpu(Double cap) {
 		cpu=cap;
 	}
@@ -66,12 +66,12 @@ public class Server {
 		return rackid;
 	}
 	
-	/** get CPU capacity */
+	/** get total CPU capacity */
 	public Double getcpu() {
 		return cpu;
 	}
 	
-	/** get CPU load */
+	/** get total CPU load */
 	public Double getcpuload() {
 		return cpuload;
 	}

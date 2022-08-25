@@ -19,10 +19,10 @@ public class MainGA extends Thread{
 
 	//Setup defsetup= new Setup(0, 0, 322, 50, 4, 60, 30);	experimental setup
 	
-	Setup defsetup= new Setup(0, 0, 322, 50, 2, 60, 30);	//default setup
+	Setup defsetup= new Setup(0, 0, 322, 50, 4, 60, 30);	//default setup
 
 	sfc_b.Tuning tuning = new sfc_b.Tuning();				//parameter tuning mechanism
-	String path="C:\\Files\\src\\EVgraphs\\";				//path to stored SFCs
+	String EVpath="../EVgraphs/";				//path to stored SFCs
 
 	int iterations=6000;
 	int iter=0;
@@ -47,11 +47,12 @@ public class MainGA extends Thread{
 	boolean deletedb=true;	//set to true to delete previous knowledge and start from scratch
 	boolean paga=true;
 
-	String path2="C:\\Files\\src\\";						//path to log files
+	//String path2="C:\\Files\\src\\results\\";						//path to log files
+	String path="";						//path to log files
 	
-	File kdbf = new File(path2+"results\\knowledgeDB.csv");
-	File adl = new File(path2+"results\\adaptationlog.csv");
-	File fitim = new File(path2+"results\\fitnessimprovement.csv");
+	File kdbf = new File(path+"knowledgeDB.csv");
+	File adl = new File(path+"adaptationlog.csv");
+	File fitim = new File(path+"fitnessimprovement.csv");
 	
 	public MainGA(network.Network net) {
 		//initialize network object, default setup, delete old log files
@@ -63,7 +64,7 @@ public class MainGA extends Thread{
 			}
 		}else {
 			if(kdbf.exists()) {
-				kdb.loaddb(path2+"results\\knowledgeDB.csv");
+				kdb.loaddb(path+"knowledgeDB.csv");
 			}
 		}
 		
@@ -92,7 +93,7 @@ public class MainGA extends Thread{
 			iter=d;
 			int r=(int) (Math.random()*5);
 			r+=5;
-			String VNFfile=path+"chain"+r+"EV";
+			String VNFfile=EVpath+"chain"+r+"EV";
 			network.VNFgraph vnfgraph=new network.VNFgraph(VNFfile);
 			vnfgraph.demands();
 			

@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import greedy.Greedy;
-
 public class GA {
 	//Genetic Algorithm
 	Codec cod=new Codec();
@@ -27,12 +25,8 @@ public class GA {
 	//normalization factors for fitness function; set to 1.0 if not applicable
 	double normaliz=1.0;
 	double normaliz2=1.0;
-	
-	//add greedy heuristic in population
-	boolean usegreed=false;
-	boolean addmgr=false;
 
-	String path2="C:\\Files\\src\\";
+	String path2="";
 	
 	//use population generation heuristic
 	boolean popgenheuristic=true;
@@ -93,10 +87,6 @@ public class GA {
 
 		long startTime = System.nanoTime();
 		
-		if(usegreed) {
-			grsim();
-		}
-		
 		best=new Best(cnodes);
 		best2=new Best(cnodes);
 		
@@ -132,15 +122,10 @@ public class GA {
 		totalTime = (endTime - startTime)/1000000;
 		
 		if(best.getbestfitness()>-1 && best.getbestfitness()<10000000) {
-			if(usegreed) {
-				double fitim=(mgr.getfitness()-best.getbestfitness())/mgr.getfitness();
-				System.out.println("GA: "+java.util.Arrays.toString(best.getbestmapping())
-											+" | "+fitim);
-				fitnessimprovement(fitim);
-			}else {
-				System.out.println("GA: "+java.util.Arrays.toString(best.getbestmapping())
-											+" | "+best.getbestfitness());
-			}
+
+				System.out.println("GA: "+java.util.Arrays.toString(best.getbestmapping()));
+										//	+" | "+best.getbestfitness());
+	
 					
 			rejection=false;
 		}else {
@@ -166,21 +151,6 @@ public class GA {
 	
 	public boolean isrejected() {
 		return rejection;
-	}
-	
-	public void grsim() {
-		//compute Greedy mapping
-		Greedy greed=new Greedy(pnet);
-		greed.getrequest(cnet);
-		greed.compute();			
-		
-		if(!greed.isrejected() && usegreed) {
-			int[] basemapping=greed.getmapping();
-			mgr=new Mapping(basemapping);
-			addmgr=true;
-		}else {
-			addmgr=false;
-		}
 	}
 	
 	public void updatetraffic() {
@@ -414,11 +384,6 @@ public class GA {
 				pop[g]=map;
 			}
 		}
-
-		if(addmgr && usegreed) {
-				pop[pop.length-1]=mgr;
-			addmgr=false;
-		}
 		
 		genfit1(pop);
 	}
@@ -434,10 +399,6 @@ public class GA {
 			}
 		}
 
-		if(addmgr && usegreed) {
-				pop[pop.length-1]=mgr;
-			addmgr=false;
-		}
 		genfit();
 	}
 	
@@ -736,7 +697,7 @@ public class GA {
         PrintWriter pw = null;
 		try {
 			try {
-				fw = new FileWriter(path2+"results\\fitnessimprovement.csv",true);
+				fw = new FileWriter("fitnessimprovement.csv",true);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

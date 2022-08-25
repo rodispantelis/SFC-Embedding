@@ -12,9 +12,9 @@ public class Kdb {
 	//stores and retrieves GA setups
 	ArrayList<Setup> kdb = new ArrayList<Setup>();
 	Setup nosetup=new Setup(-1, -1, -1, -1, -1, -1, -1);
-	String path2="C:\\Files\\src\\";
-	File kdbf = new File(path2+"results\\knowledgeDB.csv");
-	File adl = new File(path2+"results\\adaptationlog.csv");
+	String path2="";
+	File kdbf = new File(path2+"knowledgeDB.csv");
+	File adl = new File(path2+"adaptationlog.csv");
 
 	public Setup find(int vnf, int netstat) {
 		//Find and retrieve closest setup
@@ -52,7 +52,7 @@ public class Kdb {
         PrintWriter pw = null;
 		try {
 			try {
-				fw = new FileWriter(path2+"results\\knowledgeDB.csv",true);
+				fw = new FileWriter(path2+"knowledgeDB.csv",true);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -102,7 +102,7 @@ public class Kdb {
         PrintWriter pw = null;
 		try {
 			try {
-				fw = new FileWriter(path2+"results\\adaptationlog.csv",true);
+				fw = new FileWriter(path2+"adaptationlog.csv",true);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

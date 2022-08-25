@@ -42,7 +42,7 @@ public class Main {
 	int iterations;
 	Double nodecapacity;
 	long totalTime;
-	String filename="simulationresult.csv";
+	String filename="simulationresult-base.csv";
 	int r1,r2;									//specify the VNFgraph file names
 	
 	public static void main(String[] args) {
@@ -104,6 +104,7 @@ public class Main {
 		make.makefattree(k, servperrack);
 		net=make.getnet();
 		net.setpath(path);
+		net.setfilename(filename);
 		
 		for(int s=0;s<net.getservers();s++) {
 			net.getserver(s).setcpu(nodecapacity);
@@ -181,7 +182,7 @@ public class Main {
 		//print network elements
 		net.printel2();
 		
-		String path="C:\\Files\\src\\EVgraphs\\";
+		String path="../EVgraphs/";
 
 		for(int d=0;d<iterations;d++) {
 			

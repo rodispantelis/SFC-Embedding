@@ -1,5 +1,9 @@
 package network;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -16,6 +20,7 @@ public class Agent {
 	
 	/** the computations executed by the agent */
 	public void compute() {
+
 		fitness=0.0;
 		for(int s=0;s<output.length;s++) {
 			output[s]=-1;
@@ -78,6 +83,36 @@ public class Agent {
 				fitness=-1.0;
 				break;
 			}
+		}
+		
+	}
+	
+	/** store data in a file */
+	public void storedatainfile(String dt) {
+		String path="";
+		String filename="data";
+		
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        PrintWriter pw = null;
+
+		try {
+			try {
+				fw = new FileWriter(path+filename,true);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			bw = new BufferedWriter(fw);
+			pw = new PrintWriter(bw);
+			pw.println(dt);//Adds an end to the line
+			pw.flush();
+		}finally {
+	        try {
+	             pw.close();
+	             bw.close();
+	             fw.close();
+	        } catch (IOException io) { 
+	        	}
 		}
 	}
 	

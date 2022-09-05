@@ -272,8 +272,8 @@ public class VNFgraph {
 		return edgew;
 	}
 	
-	/** get demand for single node */
-	public int getnodedem(int w) {	//get vnf node demand
+	/** get demand for single virtual node */
+	public int getnodedem(int w) {
 		return nodew[w];
 	}
 

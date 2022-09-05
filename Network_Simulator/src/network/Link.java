@@ -6,7 +6,7 @@ public class Link {
 
 	int id;
 	int[] linkednodes=new int[2];		//IDs of the nodes that the link connects
-	int linktype;						//0 for bidirectional, 1 input only, 2 output only
+	int linktype=-1;						//0 for bidirectional, 1 input only, 2 output only
 										//-1 for invalid or not operational
 	boolean intrarack=false;			//is it an intra-rack link?
 	Double capacity=0.0;				//Gbps

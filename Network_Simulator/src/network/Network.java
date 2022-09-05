@@ -818,9 +818,12 @@ public class Network {
 		}
 		
 		for(int s3=0;s3<links.size();s3++) {
-				Double tb=links.get(s3).getload();
+			Double tb=0.0;
+			if(links.get(s3).gettype()>(-1)) {
+				tb=links.get(s3).getload();
 				rband+=links.get(s3).getavailableband();
 				band+=tb;
+			}
 				if(tb>0) {
 					l++;
 				}
@@ -847,22 +850,23 @@ public class Network {
 			c2r=reqcost/reqrevenue;
 		}
 				
-		results=Integer.toString(requests)+";"+					//1.request serial number
+		results=Integer.toString(requests)+";"+					//1.Request serial number
 				Integer.toString(v)+";"+						//2.Hosted VNFs
 				Integer.toString(embchains)+";"+				//3.Embedded Service Function Chains
 				df.format(band)+";"+							//4.Used bandwidth
 				df.format(rband)+";"+							//5.Available bandwidth
 				df.format(cpu)+";"+								//6.Used cpu
-				Integer.toString(a)+";"+						//7.used servers
+				Integer.toString(a)+";"+						//7.Used servers; servers that host some VNF
 				df.format(rcpu)+";"+							//8.Remaining cpu
 				df.format(intrarack)+";"+						//9.intra-rack traffic
 				df.format(outerrack)+";"+						//10.inter-rack traffic
 				df.format((inserver))+";"+						//11.intra-server virtual traffic
-				embresult+";"+									//12.is last embedded rejected?
-				df.format((successful*1.0)/(requests*1.0))+";"+	//13.acceptance ratio
-				df.format(reqrevenue)+";"+						//14.request revenue
-				df.format(reqcost)+";"+							//15.embedding cost
-				df.format(c2r);									//16.Cost/Revenue ratio
+				embresult+";"+									//12.Is last embedded rejected?
+				df.format((successful*1.0)/(requests*1.0))+";"+	//13.Acceptance ratio
+				df.format(reqrevenue)+";"+						//14.Request revenue
+				df.format(reqcost)+";"+							//15.Embedding cost
+				df.format(c2r)+";"+								//16.Cost/Revenue ratio
+				Integer.toString(l);							//17.Used physical links; links with traffic
 				
 		
 		avcapacity=Double.toString(rcpu/getservers());					//network available capacity

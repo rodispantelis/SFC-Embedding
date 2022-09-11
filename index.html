@@ -1,0 +1,64 @@
+<html><head><meta charset="UTF-8">
+<style>
+body {background-color: rgb(200, 200, 200);margin: 0; padding: 0;}
+#coda,#codb, #decod {
+width: 220px;
+border-radius: 5px; 
+}
+#thelink{
+    color:blue;
+    display:none;
+    cursor:pointer;
+    text-decoration: underline;
+}
+
+</style>
+<title>SFC-Embedding</title>
+</head>
+<body>
+<H1><i>Service Function Chain - Embedding</i></H1> 
+<H2>simulator and algorithms</H1>
+<table>
+    <tr>
+        <td style="border: 1px solid black; border-radius: 5px; vertical-align: top;">
+            <h3>Network Simulator</H3>
+			It is an advanced network simulator designed for SFC embedding simulations and experiments.<br>
+			Currently it supports 3-tier fat-tree topologies that are comonly used in modern datacenters.<br>
+			The simulator is written in Java 8 and it is only necessary to add the project<br>
+			or the .jar file in the classpath of any other project; like in the algorithms presented here.<br>
+			<a target="_blank" href="Network_Simulator_src">source code</a>, 
+			<a target="_blank" href="Network_Simulator_jar_doc/doc/index.html">documentation</a>
+        </td>
+	</tr>
+	<tr>
+        <td style="border: 1px solid black; border-radius: 5px; vertical-align: top;">
+            <h3>Genetic Algorithm</H3>
+            This is a Genetic Algorithm that embodies lots of innovations and provides near optimal solutions<br>
+			for the SFC-E problem combining effectiveness an efficiency.
+			<a target="_blank" href="Network_Simulator_src">source code</a>, 
+			<a target="_blank" href="Network_Simulator_jar_doc/doc/index.html">documentation</a>
+        </td>
+	</tr>
+	<tr>
+        <td style="border: 1px solid black; border-radius: 5px; vertical-align: top;">
+		    <h3>Baseline greedy algorithm</H3>
+			This is a simple greedy algorithm mostly used for comparison with other algorthms.<br>
+			<a target="_blank" href="SFCbaseline_src">source code</a>, 
+			<a target="_blank" href="SFCbaseline_jar_doc/doc/index.html">documentation</a>
+        </td>
+    </tr>
+</table>
+
+<br>
+<a target="_blank" href="https://github.com/rodispantelis/SFC-Embedding">SFC-Embedding code repository</a>
+<br>
+<br>
+<a target="_blank" href="https://github.com/rodispantelis/EdgeVector"> Edge Vector codec</a>
+
+<br><br>
+<small>The software provided in this repository is free software under Apache License Version 2.0, <br>
+except from Edge Vector codec that is under GNU General Public License v3.0.
+<br>
+Pantelis Rodis, 2022</small>
+</body>
+</html>

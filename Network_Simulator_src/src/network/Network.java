@@ -80,7 +80,10 @@ public class Network {
 	/** embedding vnf revenue */
 	Double reqrevenue=0.0;										
 	/** embedding cost parameters */
-	Double reqcost=0.0;											
+	Double reqcost=0.0;		
+	
+	/** network controller object; create a controller object and cast it here */
+	public Object controller;
 	
 	public Network() {
 		
@@ -500,6 +503,11 @@ public class Network {
 		return errmess;
 	}
 	
+	/** get network controller */
+	public Object getcontroller() {
+		return controller;
+	}
+	
 	/** check the validity of embedding of input VNF-graph based on generated mapping */
 	public boolean checkembed(VNFgraph vnfgraph, int[] mapping) {
 		
@@ -591,7 +599,7 @@ public class Network {
 		Double revenue=0.0, noderev=0.0, linkrev=0.0;
 		Double wn=1.0;		//weight in the sum of node revenue
 		Double wl=0.05;		//weight in the sum of link revenue
-		Double wc=0.1;		//weight in the sum of link cost
+		Double wc=0.05;		//weight in the sum of link cost
 
 		//check for cpu capacity constraints
 		
@@ -664,7 +672,7 @@ public class Network {
 					for(int tt=0;tt<(t2.length-1);tt++) {
 						if(t2[tt]!=t2[tt+1]) {
 							links.get(cod.coder(t2[tt],t2[tt+1])).addload(vnfgraph.getedgew()[l]/1000.0);
-							vnftr+=0.0+vnfgraph.getedgew()[l];
+							vnftr+=0.0+(vnfgraph.getedgew()[l]/1000.0);
 							Double[] temp= {cod.coder(t2[tt],t2[tt+1])+0.0,(vnfgraph.getedgew()[l]/1000.0)};
 							embeddedband.add(temp);
 						}else {
@@ -686,11 +694,11 @@ public class Network {
 			}
 		
 			for(int nl=0;nl<vnfgraph.getedgew().length;nl++) {
-				if(vnfgraph.getgraph()[nl]==0) {
+				if(vnfgraph.getgraph()[nl]==0) {		//if there is no link
 					
-				}else if(vnfgraph.getgraph()[nl]==3){
+				}else if(vnfgraph.getgraph()[nl]==3){	//if link is bidirectional
 					linkrev+=2*vnfgraph.getedgew()[nl]/1000.0;
-				}else {
+				}else {									//if link is single direction
 					linkrev+=vnfgraph.getedgew()[nl]/1000.0;
 				}
 			}
@@ -892,8 +900,8 @@ public class Network {
 				df.format(reqrevenue)+";"+						//14.Request revenue
 				df.format(reqcost)+";"+							//15.Embedding cost
 				df.format(c2r)+";"+								//16.Cost/Revenue ratio
-				Integer.toString(l);							//17.Used physical links; links with traffic
-				
+				Integer.toString(l)+";"+						//17.Used physical links; links with traffic
+				Integer.toString(lastrequestsize);				//18.Size of VNF-graph
 		
 		avcapacity=Double.toString(rcpu/getservers());					//network available capacity
 		

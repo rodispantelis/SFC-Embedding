@@ -1,2 +1,14 @@
 # SFC-Embedding
-Service Function Chain Embedding. Algorithms, solutions and simulation.
+[Service Function Chain Embedding. Algorithms and simulation.](https://rodispantelis.github.io/SFC-Embedding/)
+
+##Network Simulator
+[Advanced network simulator designed for SFC embedding simulations and experimentation.](https://github.com/rodispantelis/SFC-Embedding/tree/main/Network_Simulator_jar_doc)
+
+##VNF-graphs in Edge Vector format
+[Small collection of VNF-graphs.](https://github.com/rodispantelis/SFC-Embedding/tree/main/EVgraphs)
+
+##Genetic Algorithm
+[Genetic Algorithm for SFC-Embedding.](https://github.com/rodispantelis/SFC-Embedding/tree/main/SFCga_jar_doc)
+
+##Baseline greedy algorithm
+[A simple greedy algorithm.](https://github.com/rodispantelis/SFC-Embedding/tree/main/SFCbaseline_jar_doc)

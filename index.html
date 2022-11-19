@@ -22,11 +22,31 @@ border-radius: 5px;
     <tr>
         <td style="border: 1px solid black; border-radius: 5px; vertical-align: top;">
             <h3>Network Simulator</H3>
-			It is an advanced network simulator designed for SFC embedding simulations and experiments.<br>
+			It is an advanced network simulator designed for SFC embedding simulations and experimentation.<br>
 			Currently it supports 3-tier fat-tree topologies that are comonly used in modern datacenters.<br>
 			The simulator is written in Java 8 and it is only necessary to add the project<br>
 			or the .jar file in the classpath of any project that uses it; like in the algorithms presented here.<br>
 			The output is a log file describing the status of the network after each request, accepted or not.<br>
+			<a  onclick="show()" style="color:blue;cursor: pointer;text-decoration:underline;">fields description </a>,
+			<div id="fields" style="display:none">
+			1.request serial number<br>
+			2.hosted VNFs<br>
+			3.embedded Service Function Chains<br>
+			4.used bandwidth<br>
+			5.available bandwidth<br>
+			6.used CPU<br>
+			7.used servers; servers that host some VNF<br>
+			8.remaining cpu<br>
+			9.intra-rack traffic<br>
+			10.inter-rack traffic<br>
+			11.intra-server virtual traffic<br>
+			12.is last embedded rejected?<br>
+			13.acceptance ratio<br>
+			14.request revenue<br>
+			15.embedding cost<br>
+			16.cost/revenue ratio<br>
+			17.used physical links; links with traffic<br>
+			</div>
 			<a target="_blank" href="https://github.com/rodispantelis/SFC-Embedding/tree/main/Network_Simulator_src">source code</a>, 
 			<a target="_blank" href="Network_Simulator_jar_doc/doc/index.html">documentation</a>
         </td>
@@ -36,7 +56,7 @@ border-radius: 5px;
             <h3>VNF-graphs in Edge Vector format</H3>
 			A small collection of VNF-graph suitabe to be used as requests in embedding algorithms.<br>
 			The directory called "EVgraphs" should be in the same level as the directory the contains the algorithm.<br>
-			<a target="_blank" href="https://github.com/rodispantelis/SFC-Embedding/tree/main/EVgraphs">VNF-graph</a>, 
+			<a target="_blank" href="https://github.com/rodispantelis/SFC-Embedding/tree/main/EVgraphs">VNF-graphs</a>, 
         </td>
 	</tr>
 	<tr>
@@ -75,5 +95,14 @@ border-radius: 5px;
 except from Edge Vector codec that is under GNU General Public License v3.0.
 <br>
 Pantelis Rodis, 2022</small>
+
+<script type="text/javascript">
+function show(){
+	document.getElementById("fields").style.display="block";
+}
+function hide() {
+	document.getElementById("fields").style.display="none";
+}
+</script>
 </body>
 </html>

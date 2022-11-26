@@ -13,10 +13,10 @@ nodecapacity 20.0
 k 4
 
 % VNF life cycle duration
-duration 608
+duration 600
 
 % Iterations; number of incoming request to be served during each simulation session
-iterations 6000
+iterations 4000
 
 % Path to store simulation log files; if commented, files will be stored on working directory
 %path C:\\temp\\

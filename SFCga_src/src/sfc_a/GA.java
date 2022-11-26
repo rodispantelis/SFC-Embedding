@@ -108,20 +108,20 @@ public class GA {
 		pops2=new Mapping[supergen];
 		for(int t=0;t<supergen;t++){
 			
-		pops=new Mapping[supergen];
+			pops=new Mapping[supergen];
 
-		for(int s=0;s<supergen;s++){
-			best=new Best(cnodes);
-			genpop();
-			init2();
-			superbest(s);
-		}
+			for(int s=0;s<supergen;s++){
+				best=new Best(cnodes);
+				genpop();
+				init2();
+				superbest(s);
+			}
 		
-		best=new Best(cnodes);
-		pop=pops;
-		genfit();
-		init2();
-		superbest2(t);
+			best=new Best(cnodes);
+			pop=pops;
+			genfit();
+			init2();
+			superbest2(t);
 		}
 		
 		if(supergen>1) {

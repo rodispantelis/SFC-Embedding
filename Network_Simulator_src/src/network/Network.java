@@ -598,8 +598,8 @@ public class Network {
 		//revenue of VNF
 		Double revenue=0.0, noderev=0.0, linkrev=0.0;
 		Double wn=1.0;		//weight in the sum of node revenue
-		Double wl=0.05;		//weight in the sum of link revenue
-		Double wc=0.05;		//weight in the sum of link cost
+		Double wl=0.5;		//weight in the sum of link revenue
+		Double wc=0.5;		//weight in the sum of link cost
 
 		//check for cpu capacity constraints
 		
@@ -665,27 +665,30 @@ public class Network {
 		//and bandwidth
 			for(int l=0;l<vnfgraph.getgraph().length;l++) {
 				if(vnfgraph.getgraph()[l]>0) {
-					int vnfhops=0;
+					int vnfhops=0;Double tvnftr=0.0;
 					int[] t1=cod.decoder(l);
 					int[] t2=getserverpath(mapping[t1[0]],mapping[t1[1]]);
 				
 					for(int tt=0;tt<(t2.length-1);tt++) {
 						if(t2[tt]!=t2[tt+1]) {
 							links.get(cod.coder(t2[tt],t2[tt+1])).addload(vnfgraph.getedgew()[l]/1000.0);
-							vnftr+=0.0+(vnfgraph.getedgew()[l]/1000.0);
+							tvnftr+=0.0+(vnfgraph.getedgew()[l]/1000.0);//demands of embedded virtual link
 							Double[] temp= {cod.coder(t2[tt],t2[tt+1])+0.0,(vnfgraph.getedgew()[l]/1000.0)};
 							embeddedband.add(temp);
 						}else {
 							inserver+=(vnfgraph.getedgew()[l]/1000.0);
 						}
 					}
+					//compute hop-count
 					if((t2.length==2 && t2[0]==t2[1])) {
 						vnfhops=0;
 					}
 					else {
 						vnfhops=(t2.length-1);
 					}
+					
 					hops+=vnfhops;
+					vnftr+=tvnftr*vnfhops;//demands*hop-count
 				}
 			}
 		
@@ -693,13 +696,14 @@ public class Network {
 				noderev+=vnfgraph.getnodew()[nr];
 			}
 		
+			//compute virtual link revenue
 			for(int nl=0;nl<vnfgraph.getedgew().length;nl++) {
 				if(vnfgraph.getgraph()[nl]==0) {		//if there is no link
 					
 				}else if(vnfgraph.getgraph()[nl]==3){	//if link is bidirectional
-					linkrev+=2*vnfgraph.getedgew()[nl]/1000.0;
+					linkrev+=2.0*vnfgraph.getedgew()[nl]/1000.0;
 				}else {									//if link is single direction
-					linkrev+=vnfgraph.getedgew()[nl]/1000.0;
+					linkrev+=0.0+(vnfgraph.getedgew()[nl]/1000.0);
 				}
 			}
 
@@ -710,9 +714,10 @@ public class Network {
 			revenue=(wn*noderev)+(wl*linkrev);
 			embeddedSFCs.add(new SFC(embeddedcpu, embeddedband, duration, vnfgraph.banddemand, inserver));
 			successful++;
-			
 			reqrevenue=revenue;
-			reqcost=(wn*noderev)+(wc*vnftr*(hops*1.0));
+			
+			//cost accumulates embedding cost of all nodes and substrate link
+			reqcost=(wn*noderev)+(wc*vnftr);
 		}else{
 			System.out.println("Embedding rejected.");
 		}

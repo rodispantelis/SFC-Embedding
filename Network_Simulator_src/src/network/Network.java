@@ -36,7 +36,7 @@ public class Network {
 	/** number of servers in network */
 	int servers;								
 	/** server registry */
-	int[][] servreg;	
+	public int[][] servreg;	
 	/** servers sorted by available capacity */
 	int[] sortservac;
 	/** racks */
@@ -124,9 +124,14 @@ public class Network {
 	
 	//racks and switches parameters
 	
-	/** add server link */
-	public void addserverlink(int id, int n1, int n2, int type) {
+	/** add server inter-rack ink */
+	public void addserveroutlink(int id, int n1, int n2, int type) {
 		links.set(cod.coder(n1, n2), new Link(cod.coder(n1, n2), n1, n2, type, false));
+	}
+	
+	/** add server intra-rack link */
+	public void addserverintlink(int id, int n1, int n2, int type) {
+		links.set(cod.coder(n1, n2), new Link(cod.coder(n1, n2), n1, n2, type, true));
 	}
 	
 	/** add link */
@@ -176,25 +181,28 @@ public class Network {
 	public int[] getserverpath(int s1, int s2) {
 		
 		int[] path=null;
-		if(s1>=(racks.size()*servperrack) || s2>=(racks.size()*servperrack)) {
-			System.out.println("error: invalid server id");
-		}else {
-			int r1=s1/servperrack;
-			int r2=s2/servperrack;
+		if(s1!=s2) {
+			if(s1>=(racks.size()*servperrack) || s2>=(racks.size()*servperrack)) {
+				System.out.println("error: invalid server id");
+			}else {
+				int r1=s1/servperrack;
+				int r2=s2/servperrack;
 			
-			int[] gs=getswitchpath(r1,r2);
+				int[] gs=getswitchpath(r1,r2);	
 			
-			if(r1!=r2) {
 				path=new int[getswitchpath(r1,r2).length+2];
 				path[0]=s1;
 				for(int i=1;i<(path.length-1);i++) {
 					path[i]=gs[i-1];
 				}
-			}else {
-				path=new int[2];
-				path[0]=s1;
+
+				path[path.length-1]=s2;
 			}
-			path[path.length-1]=s2;
+		}
+		else {
+			path=new int[2];
+			path[0]=s1;
+			path[1]=s2;
 		}
 		return path;
 	}
@@ -203,7 +211,7 @@ public class Network {
 	public int[] getswitchpath(int n1, int n2) {
 			
 		if(racks.get(n1).gettor()==racks.get(n2).gettor()) {
-			int[] a= {n1+servers,n2+servers};
+			int[] a= {n1+servers};
 			return a;
 		}else if((racks.get(n1).getpod()==racks.get(n2).getpod())){
 			int nn1=0,nn2=0;
@@ -299,6 +307,7 @@ public class Network {
 	 * server registry
 	 * index in edge vector of the paths that interconnect all servers
 	 */
+
 	public void serverreg() {
 		//[0] server#1, [1] server#2, [2] hop-count of the path connecting #1 and #2
 		
@@ -314,20 +323,20 @@ public class Network {
 			if((t2.length==2 && t2[0]==t2[1])) {
 				servreg[2][l]=0;
 			}
-			servreg[2][l]=(t2.length-1);
+			servreg[2][l]=(t2.length-2);
 			if(servreg[2][l]>maxhop) {
 				maxhop=servreg[2][l];				//update maximum hop count
 			}	
 		}
 		servregsort();
 	}
-	
+
 	/**
 	 * server registry
 	 * sort servers registry based on their hop-count on descending order
 	 * computationally expensive version
 	 */
-	public void servregsortold(){	//
+	public void servregsortold(){
 		int[][] servregsort=new int[3][servers*(servers-1)/2];
 		int max=0;
 		for(int n2=0;n2<servreg[0].length;n2++){
@@ -668,7 +677,7 @@ public class Network {
 					int vnfhops=0;Double tvnftr=0.0;
 					int[] t1=cod.decoder(l);
 					int[] t2=getserverpath(mapping[t1[0]],mapping[t1[1]]);
-				
+
 					for(int tt=0;tt<(t2.length-1);tt++) {
 						if(t2[tt]!=t2[tt+1]) {
 							links.get(cod.coder(t2[tt],t2[tt+1])).addload(vnfgraph.getedgew()[l]/1000.0);
@@ -679,16 +688,11 @@ public class Network {
 							inserver+=(vnfgraph.getedgew()[l]/1000.0);
 						}
 					}
-					//compute hop-count
-					if((t2.length==2 && t2[0]==t2[1])) {
-						vnfhops=0;
-					}
-					else {
-						vnfhops=(t2.length-1);
-					}
-					
+					vnfhops=(t2.length-2);
+
 					hops+=vnfhops;
-					vnftr+=tvnftr*vnfhops;//demands*hop-count
+
+					vnftr+=tvnftr*vnfhops;	//demands*hop-count
 				}
 			}
 		
@@ -759,6 +763,11 @@ public class Network {
 	/** get used CPU */
 	public Double getusedcpu() {
 		return cpu;
+	}
+	
+	/** get link */
+	public Link getlink(int tt) {
+		return links.get(tt);
 	}
 	
 	/** store network statistics after rejecting a request */
@@ -840,8 +849,9 @@ public class Network {
 
 		band=0.0;
 		cpu=0.0;
-		Double rcpu=0.0, rband=0.0, intrarack=0.0, outerrack=0.0;
-		int l=0,a=0,v=0;
+		Double rcpu=0.0;
+		Double rband=0.0, intrarack=0.0, outerrack=0.0, remintra=0.0, remouter=0.0;
+		int l=0,ul=0,a=0,v=0;
 		Double inserver=0.0;
 
 		for(int s1=0;s1<racks.size();s1++) {
@@ -862,15 +872,20 @@ public class Network {
 				tb=links.get(s3).getload();
 				rband+=links.get(s3).getavailableband();
 				band+=tb;
-			}
+			
 				if(tb>0) {
 					l++;
+				}else {
+					ul++;
 				}
 				if(links.get(s3).isintrarack()) {
 					intrarack+=links.get(s3).getload();
+					remintra+=links.get(s3).getavailableband();
 				}else {
 					outerrack+=links.get(s3).getload();
+					remouter+=links.get(s3).getavailableband();
 				}
+			}
 		}
 
 		for(int e=0;e<embeddedSFCs.size();e++) {
@@ -906,22 +921,25 @@ public class Network {
 				df.format(reqcost)+";"+							//15.Embedding cost
 				df.format(c2r)+";"+								//16.Cost/Revenue ratio
 				Integer.toString(l)+";"+						//17.Used physical links; links with traffic
-				Integer.toString(lastrequestsize);				//18.Size of VNF-graph
+				Integer.toString(lastrequestsize)+";"+			//18.Size of VNF-graph
+				df.format(remintra)+";"+						//19.Remaining intra-rack bandwidth
+				df.format(remouter);							//20.Remaining outer-rack bandwidth
 		
-		avcapacity=Double.toString(rcpu/getservers());					//network available capacity
+		avcapacity=Double.toString(rcpu/getservers());			//network available capacity
 		
 		if(printnetstats) {
 		System.out.println("\nNetwork statistics\n"+""
 				+"Hosted VNFs:\t\t"+v+"\n"
 				+"Embedded VNF-chains:\t"+embchains+"\n"
 				+"Used bandwidth:\t\t"+df.format(band)+" Gbps in "+l+" links\n"
-				+"Remaining bandwidth:\t"+df.format(rband)+" Gbps\n"
-				+"Used cpu:\t\t"+df.format(cpu)+" GHz"+" in "+a+" servers\n"
-				+"Remaining cpu:\t\t"+df.format(rcpu)+" GHz\n"
+				+"Remaining bandwidth:\t"+df.format(rband)+" Gbps "+ul+" un. links\n"
+				+"Rem. intra-rack band.:\t"+df.format(remintra)+" Gbps\n"
+				+"Rem. outer-rack band.:\t"+df.format(remouter)+" Gbps\n"
 				+"Intra-rack traffic:\t"+df.format(intrarack)+" Gbps\n"
 				+"Outer-rack traffic:\t"+df.format(outerrack)+" Gbps\n"
-				+"Intra-server traffic:\t"
-				+df.format(inserver)+" Gbps\n"
+				+"Intra-server traffic:\t"+df.format(inserver)+" Gbps\n"
+				+"Used cpu:\t\t"+df.format(cpu)+" GHz"+" in "+a+" servers\n"
+				+"Remaining cpu:\t\t"+df.format(rcpu)+" GHz\n"
 				+"acceptance ratio:\t"
 				+df.format((successful*1.0)/(requests*1.0)));
 		}

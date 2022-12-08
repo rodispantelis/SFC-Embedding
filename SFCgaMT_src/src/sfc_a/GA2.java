@@ -397,79 +397,7 @@ public class GA2 {
 		range();
 		updatebest();
 	}
-	
-	/** compute fitness on given mapping experimental version 1 */
-	public void genefitness_experimental1(Mapping m) {
-		int[] mapping=m.getmapping();
-		double ff=0.0;
-		m.setfitness(0);
-		boolean reject=false;
-		
-		reject=pnet.checkembed(cnet, mapping);
-		
-		ArrayList<Integer> nodes=new ArrayList<Integer>();
-		ArrayList<Double> demands=new ArrayList<Double>();
-		
-		if(!reject) {
-			for(int i=0;i<mapping.length;i++) {
-				boolean found=false;
-				for(int n=0;n<nodes.size() && !found;n++) {
-					if(nodes.get(n)==mapping[i]) {
-						demands.set(n, (demands.get(n)+cnet.getnodew()[i]));
-						found=true;
-					}
-				}
-				if(!found) {
-					nodes.add(mapping[i]);
-					demands.add(cnet.getnodew()[i]*1.0);
-				}
-			}
-		
-			for(int f=0;f<nodes.size() && !reject;f++) {
-				Double t=pnet.getserver(nodes.get(f)).getcpu()-demands.get(f);
-				ff+=t;
-			}
-		}else {
-			ff=10000000;
-		}
-		
-		if(!reject) {
-			for(int l=0;l<cnet.getgraph().length;l++) {
-				if(cnet.getgraph()[l]>0) {	
-					int[] t1=cod.decoder(l);
-					int vnfhops=0;
-					double minband=0.0;
-					
-					if(mapping[t1[0]]!=mapping[t1[1]]) {
-						int[] t2=pnet.getserverpath(mapping[t1[0]],mapping[t1[1]]);
-					
-						if(t2.length==2) {
-							vnfhops=1;
-						}else {
-							vnfhops=t2.length-2;
-						}
-						minband=pnet.getband(t2[0],t2[1]);
-	
-						for(int tt=1;tt<(t2.length-1);tt++) {
-							if(t2[tt]!=t2[tt+1]) {
-								if(minband>pnet.getband(t2[tt],t2[tt+1])) {
-									minband=pnet.getband(t2[tt],t2[tt+1]);
-								}
-							}
-						}
 
-					double tt=(vnfhops*minband)-(cnet.getedgew()[l]/1000.0);
-					ff+=tt;
-					}
-				}
-			}
-		}
-		
-		m.setfitness(ff);
-		nodes.clear();
-		demands.clear();
-	}
-	
 	/** compute fitness on given mapping */
 	public void genefitness(Mapping m) {
 		//compute and store fitness in input mapping
@@ -520,13 +448,7 @@ public class GA2 {
 					
 					if(mapping[t1[0]]!=mapping[t1[1]]) {
 							int[] t2=pnet.getserverpath(mapping[t1[0]],mapping[t1[1]]);
-							if(pnet.getserver(mapping[t1[0]]).getrackid()==
-									pnet.getserver(mapping[t1[1]]).getrackid()) {
-								vnfhops=1.0;
-							}else {
-								vnfhops=1.0*(t2.length-2);
-							}
-	
+							vnfhops=1.0*(t2.length-2);
 							minband=pnet.getband(t2[0],t2[1]);
 							
 							for(int tt=1;tt<(t2.length-1) && !reject;tt++) {
@@ -539,92 +461,6 @@ public class GA2 {
 
 							double tff=normaliz2*((vnfhops*minband)-(cnet.getedgew()[l]/1000.0));
 							ff+=tff;
-					}
-				}
-			}
-		}
-		
-
-		if(!reject) {
-			m.setfitness(ff);
-		}else {
-			m.setfitness(10000000);
-		}
-
-		nodes.clear();
-		demands.clear();
-	}
-	
-	/** compute fitness on given mapping experimental version 2 */
-	public void genefitness_experimental2(Mapping m) {
-		int[] mapping=m.getmapping();
-		double ff=0.0;
-		m.setfitness(0);
-		boolean reject=false;
-		
-		//check for validity
-		reject=pnet.checkembed(cnet, mapping);
-
-		ArrayList<Integer> nodes=new ArrayList<Integer>();
-		ArrayList<Double> demands=new ArrayList<Double>();
-		
-		if(!reject) {
-			for(int i=0;i<mapping.length;i++) {
-				boolean found=false;
-				for(int n=0;n<nodes.size() && !found;n++) {
-					if(nodes.get(n)==mapping[i]) {
-						demands.set(n, (demands.get(n)+cnet.getnodew()[i]));
-						found=true;
-					}
-				}
-				if(!found) {
-					nodes.add(mapping[i]);
-					demands.add(cnet.getnodew()[i]*1.0);
-				}
-			}
-		
-			for(int f=0;f<nodes.size() && !reject;f++) {//System.out.println("f"+f);
-
-				Double t=pnet.getserver(nodes.get(f)).getcpu()-demands.get(f);
-				if(t<0.0) {
-					reject=true;
-					ff=10000000;
-					break;
-				}else {
-				ff+=normaliz*t;
-				}
-			}
-		}else {
-			ff=10000000;
-		}
-		
-		if(!reject) {
-			for(int l=0;l<cnet.getgraph().length;l++) {
-				if(cnet.getgraph()[l]>0) {	
-					int[] t1=cod.decoder(l);
-					double vnfhops=0.0;
-					double minband=0.0;
-					
-					if(mapping[t1[0]]!=mapping[t1[1]]) {
-
-						int[] t2=pnet.getserverpath(mapping[t1[0]],mapping[t1[1]]);
-						vnfhops=1.0*(t2.length-1);
-						minband=pnet.getband(t2[0],t2[1]);
-
-						for(int tt=1;tt<(t2.length-1) && !reject;tt++) {
-							if(t2[tt]!=t2[tt+1]) {
-								if(minband>pnet.getband(t2[tt],t2[tt+1])) {
-									minband=pnet.getband(t2[tt],t2[tt+1]);
-								}
-							}
-						}
-						if(minband<(cnet.getedgew()[l]/1000.0)) {
-							reject=true;
-							ff=10000000;
-							break;
-						}else {
-							ff+=normaliz2*((vnfhops*minband)-(cnet.getedgew()[l]/1000.0));
-						}
 					}
 				}
 			}

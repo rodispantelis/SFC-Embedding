@@ -27,7 +27,7 @@ border-radius: 5px;
 			The simulator is written in Java 8 and it is only necessary to add the project<br>
 			or the .jar file in the classpath of any project that uses it; like in the algorithms presented here.<br>
 			The output is a log file describing the status of the network after each request, accepted or not.<br>
-			Use the -Xmx4g or the -Xmx6g option in case of large networks; larger tha 5000 nodes.
+			Use the -Xmx4g or the -Xmx6g option in case of large networks; larger than 5000 nodes.<br>
 			<a  onclick="show()" style="color:blue;cursor: pointer;text-decoration:underline;">fields description </a>,
 			<div id="fields" style="display:none">
 			1.request serial number<br>
@@ -47,6 +47,9 @@ border-radius: 5px;
 			15.embedding cost<br>
 			16.cost/revenue ratio<br>
 			17.used physical links; links with traffic<br>
+			18.Size of VNF-graph<br>
+			19.Remaining intra-rack bandwidth<br>
+			20.Remaining outer-rack bandwidth<br>
 			</div>
 			<a target="_blank" href="https://github.com/rodispantelis/SFC-Embedding/tree/main/Network_Simulator_src">source code</a>, 
 			<a target="_blank" href="Network_Simulator_jar_doc/doc/index.html">documentation</a>
@@ -55,9 +58,10 @@ border-radius: 5px;
 	    <tr>
         <td style="border: 1px solid black; border-radius: 5px; vertical-align: top;">
             <h3>VNF-graphs in Edge Vector format</H3>
-			A small collection of VNF-graph suitabe to be used as requests in embedding algorithms.<br>
+			A small collection of sparse adn dense VNF-graph suitabe to be used as requests in embedding algorithms.<br>
 			The directory called "EVgraphs" should be in the same level as the directory the contains the algorithm.<br>
-			<a target="_blank" href="https://github.com/rodispantelis/SFC-Embedding/tree/main/EVgraphs">VNF-graphs</a>, 
+			<a target="_blank" href="https://github.com/rodispantelis/SFC-Embedding/tree/main/EVgraphs"> sparse VNF-graphs</a>, 
+			<a target="_blank" href="https://github.com/rodispantelis/SFC-Embedding/tree/main/EVgraphs-dense">dense VNF-graphs</a>,
         </td>
 	</tr>
 	<tr>

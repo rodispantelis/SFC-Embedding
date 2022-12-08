@@ -432,13 +432,7 @@ public class GA_c {
 					if(mapping[t1[0]]!=mapping[t1[1]]) {
 			
 							int[] t2=pnet.getserverpath(mapping[t1[0]],mapping[t1[1]]);
-					
-							if(pnet.getserver(mapping[t1[0]]).getrackid()==
-									pnet.getserver(mapping[t1[1]]).getrackid()) {
-								vnfhops=1.0;
-							}else {
-								vnfhops=1.0*(t2.length-2);
-							}
+							vnfhops=1.0*(t2.length-2);
 	
 							minband=pnet.getband(t2[0],t2[1]);
 

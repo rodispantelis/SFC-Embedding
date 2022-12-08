@@ -57,17 +57,7 @@ public class MainGA extends Thread{
 		
 		this.pnet=net;
 		this.defsetup=setup;
-/*
-		if(deletedb) {
-			if(kdbf.exists()) {
-				kdbf.delete();
-			}
-		}else {
-			if(kdbf.exists()) {
-				kdb.loaddb(path+"knowledgeDB.csv");
-			}
-		}
-*/		
+		
 		if(adl.exists()) {
 			adl.delete();
 		}

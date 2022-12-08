@@ -374,84 +374,6 @@ public class GA extends Thread{
 		}
 	}
 	
-	/** determines the nodes that will be used for population generation */
-	public void genpop(){
-		
-		availnodes.clear();
-		
-		//determine available nodes and store them in an ArrayList
-		//nodes the available capacity of which is larger than the minimum demand of the VNFs
-		for(int s=0;s<pnet.getservers();s++) {
-			if(pnet.getserver(s).getavailablecpu()>=cnet.getminnodew()) {
-				availnodes.add(s);
-			}
-		}
-		
-		if(availnodes.size()>0) {
-			genpop2();
-		}else {
-			//no suitable nodes found
-			rejection=true;
-		}
-	}
-	
-	/** generates population */
-	public void genpop2(){
-		//the first d genes are generated heuristically and cover search space uniformly
-		
-		int d=0;
-		
-		if(popgenheuristic) {
-			d=pnet.getservers();
-		
-			if(d>chromes){
-				d=chromes*8/10;
-			}
-		}
-		
-		for(int t0=0;t0<d;t0++){
-			if(pnet.getserver(t0).getavailablecpu()>=cnet.getminnodew()) {
-			int[] m=new int[cnodes];
-			for(int t=0;t<cnodes;t++){
-				m[t]=t0;
-			}
-			if(t0<pop.length){
-			pop[t0]= new Mapping(m);
-			}
-			}else {
-				Mapping map1 = new Mapping(cnodes, availnodes);
-				if(t0<pop.length){
-				pop[t0]=map1;
-				}
-			}
-		}
-			
-		//the rest of the population is randomly generated
-		for(int g=d; g<pop.length;g++){
-			Mapping map = new Mapping(cnodes, availnodes);
-			if(g<pop.length){
-				pop[g]=map;
-			}
-		}
-		
-		genfit1(pop);
-	}
-	
-	/** generation of random population without the use of a heuristic*/
-	public void genpop_v1(){
-		//generates population randomly
-		int d=0;
-
-		for(int g=d; g<chromes;g++){
-			Mapping map = new Mapping(cnodes, pnodes);
-			if(g<pop.length){
-				pop[g]=map;
-			}
-		}
-
-		genfit();
-	}
-	
 	/** compute fitness for population */
 	public void genfit(){
 		genfit1(pop);
@@ -474,6 +396,85 @@ public class GA extends Thread{
 
 		range();
 		updatebest();
+	}
+	
+	/** compute fitness on given mapping */
+	public void genefitness(Mapping m) {
+		//compute and store fitness in input mapping
+		int[] mapping=m.getmapping();
+		double ff=0.0;
+		m.setfitness(0);
+		boolean reject=false;
+		
+		//check for validity
+		if(cnet.getnodes()==mapping.length) {
+		reject=pnet.checkembed(cnet, mapping);
+		}else {
+			reject=true;
+		}
+
+		ArrayList<Integer> nodes=new ArrayList<Integer>();
+		ArrayList<Double> demands=new ArrayList<Double>();
+		
+		if(!reject) {
+			for(int i=0;i<mapping.length;i++) {
+				boolean found=false;
+				for(int n=0;n<nodes.size() && !found;n++) {
+					if(nodes.get(n)==mapping[i]) {
+						demands.set(n, (demands.get(n)+cnet.getnodew()[i]));
+						found=true;
+					}
+				}
+				if(!found) {
+					nodes.add(mapping[i]);
+					demands.add(cnet.getnodew()[i]*1.0);
+				}
+			}
+		
+			for(int f=0;f<nodes.size() && !reject;f++) {
+				Double t=pnet.getserver(nodes.get(f)).getcpu()-demands.get(f);
+				ff+=normaliz*t;
+			}
+		}else {
+			ff=10000000;
+		}
+		
+		if(!reject) {
+			for(int l=0;l<cnet.getgraph().length;l++) {
+				if(cnet.getgraph()[l]>0) {	
+					int[] t1=cod.decoder(l);
+					double vnfhops=0.0;
+					double minband=0.0;
+					
+					if(mapping[t1[0]]!=mapping[t1[1]]) {
+							int[] t2=pnet.getserverpath(mapping[t1[0]],mapping[t1[1]]);
+							vnfhops=1.0*(t2.length-2);
+							minband=pnet.getband(t2[0],t2[1]);
+							
+							for(int tt=1;tt<(t2.length-1) && !reject;tt++) {
+								if(t2[tt]!=t2[tt+1]) {
+									if(minband>pnet.getband(t2[tt],t2[tt+1])) {
+										minband=pnet.getband(t2[tt],t2[tt+1]);
+									}
+								}
+							}
+
+							double tff=normaliz2*((vnfhops*minband)-(cnet.getedgew()[l]/1000.0));
+							ff+=tff;
+					}
+				}
+			}
+		}
+		
+
+		if(!reject) {
+			m.setfitness(ff);
+		}else {
+			m.setfitness(10000000);
+		}
+
+		nodes.clear();
+		demands.clear();
 	}
 	
 	/** compute fitness on given mapping experimental version 1 */
@@ -547,92 +548,7 @@ public class GA extends Thread{
 		nodes.clear();
 		demands.clear();
 	}
-	
-	/** compute fitness on given mapping */
-	public void genefitness(Mapping m) {
-		//compute and store fitness in input mapping
-		int[] mapping=m.getmapping();
-		double ff=0.0;
-		m.setfitness(0);
-		boolean reject=false;
 		
-		//check for validity
-		if(cnet.getnodes()==mapping.length) {
-		reject=pnet.checkembed(cnet, mapping);
-		}else {
-			reject=true;
-		}
-
-		ArrayList<Integer> nodes=new ArrayList<Integer>();
-		ArrayList<Double> demands=new ArrayList<Double>();
-		
-		if(!reject) {
-			for(int i=0;i<mapping.length;i++) {
-				boolean found=false;
-				for(int n=0;n<nodes.size() && !found;n++) {
-					if(nodes.get(n)==mapping[i]) {
-						demands.set(n, (demands.get(n)+cnet.getnodew()[i]));
-						found=true;
-					}
-				}
-				if(!found) {
-					nodes.add(mapping[i]);
-					demands.add(cnet.getnodew()[i]*1.0);
-				}
-			}
-		
-			for(int f=0;f<nodes.size() && !reject;f++) {
-				Double t=pnet.getserver(nodes.get(f)).getcpu()-demands.get(f);
-				ff+=normaliz*t;
-			}
-		}else {
-			ff=10000000;
-		}
-		
-		if(!reject) {
-			for(int l=0;l<cnet.getgraph().length;l++) {
-				if(cnet.getgraph()[l]>0) {	
-					int[] t1=cod.decoder(l);
-					double vnfhops=0.0;
-					double minband=0.0;
-					
-					if(mapping[t1[0]]!=mapping[t1[1]]) {
-							int[] t2=pnet.getserverpath(mapping[t1[0]],mapping[t1[1]]);
-							if(pnet.getserver(mapping[t1[0]]).getrackid()==
-									pnet.getserver(mapping[t1[1]]).getrackid()) {
-								vnfhops=1.0;
-							}else {
-								vnfhops=1.0*(t2.length-2);
-							}
-	
-							minband=pnet.getband(t2[0],t2[1]);
-							
-							for(int tt=1;tt<(t2.length-1) && !reject;tt++) {
-								if(t2[tt]!=t2[tt+1]) {
-									if(minband>pnet.getband(t2[tt],t2[tt+1])) {
-										minband=pnet.getband(t2[tt],t2[tt+1]);
-									}
-								}
-							}
-
-							double tff=normaliz2*((vnfhops*minband)-(cnet.getedgew()[l]/1000.0));
-							ff+=tff;
-					}
-				}
-			}
-		}
-		
-
-		if(!reject) {
-			m.setfitness(ff);
-		}else {
-			m.setfitness(10000000);
-		}
-
-		nodes.clear();
-		demands.clear();
-	}
-	
 	/** compute fitness on given mapping experimental version 2 */
 	public void genefitness_experimental2(Mapping m) {
 		int[] mapping=m.getmapping();

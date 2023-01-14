@@ -12,4 +12,6 @@ a simple baseline greedy algorithm useful for comparison with more advance algor
 
 * **SFCbaseline**. [Baseline greedy algorithm .](https://github.com/rodispantelis/SFC-Embedding/tree/main/Genetic_Algorithm/SFCbaseline_jar_doc)
 
+A simple way to test these algorithms is to download the whole repository and run the jar files from console without changing the file structure.
+
 [Service Function Chain Embedding.](https://rodispantelis.github.io/SFC-Embedding/)

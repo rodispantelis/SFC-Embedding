@@ -1,15 +1,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% simulation and network parameters %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+% lines must not start with a blank space
 % Network type
 type fat-tree
 
-% Servers per rack
+% Servers per rack; may override standard topology configuration
 servperrack 20
 
 % Server capacity
 nodecapacity 20.0
 
-% Parameter k; different usage in different topologies
+% Parameter k; different usage in different topologies; even numbers only for fat-tree topologies
 k 4
 
 % VNF life cycle duration

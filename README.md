@@ -2,7 +2,7 @@
 
 [Service Function Chain Embedding. Algorithms and simulation tools.](https://rodispantelis.github.io/SFC-Embedding/)
 
-* **Distributed Deep Learning Algorithm**. [A MultiThreaded Genetic Algorithm for SFC-Embedding.](https://github.com/rodispantelis/SFC-Embedding/tree/main/Distributed-DeepLearning)
+* **Distributed Machine Learning**. [A Distribute Deep Learning algorithm for SFC-Embedding.](https://github.com/rodispantelis/SFC-Embedding/tree/main/Distributed-DeepLearning)
 
 * **Genetic Algorithm**. [A MultiThreaded Genetic Algorithm for SFC-Embedding.](https://github.com/rodispantelis/SFC-Embedding/tree/main/Genetic_Algorithm/)
 

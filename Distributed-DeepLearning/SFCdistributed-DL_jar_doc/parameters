@@ -1,0 +1,40 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% simulation and network parameters %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% lines must not start with a blank space
+% Network type
+type fat-tree
+
+% Server capacity
+nodecapacity 20.0
+
+% Parameter k; different usage in different topologies; even numbers only for fat-tree topologies
+k 12
+
+% VNF life cycle duration
+duration 1620
+
+% Iterations; number of incoming request to be served during each simulation session
+iterations 6000
+
+% Path to store simulation log files; if not specified, files will be stored on working directory
+%path C:\\temp\\
+
+% Path to VNFgraph files
+vnfgraphs ../EVgraphs/
+
+% The VNFgraph files are in Edge Vector format with file names of the form "chain"+r+"EV"
+% where r are consecutive integer numbers in the space [r1, r1+r2) defined in the following parameters
+
+r1 5
+r2 5
+
+% The maximum SFC size
+maxsfcsize 9
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% distributed algorithm parameters %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%parameter to define number of nodes in the cluster; cluster size = fnodes * VNF size
+fnodes 4
+
+%agent modes: 1 greedy;2 train and run network;
+%3 train a new Neural Network for each request; 4 run only stored models
+mode 2

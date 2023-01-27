@@ -6,6 +6,8 @@ a collection of VNF-graphs in [Edge Vector format](https://github.com/rodispante
 
 * **SFCdistributed-DL**. [The Deep Learning algorithm.](https://github.com/rodispantelis/SFC-Embedding/tree/main/Distributed-DeepLearning/SFCdistributed-DL_jar_doc)
 
+* **ANN-DL**. [Artificial Neural Network designed for distributed DL.](https://github.com/rodispantelis/SFC-Embedding/tree/main/Distributed-DeepLearning/ANN-DL_jar_doc)
+
 * **Network_Simulator**. [The network simulator.](https://github.com/rodispantelis/SFC-Embedding/tree/main/Distributed-DeepLearning/Network_Simulator_jar_doc)
 
 * **EVgraphs**. [Collections of VNF-graphs.](https://github.com/rodispantelis/SFC-Embedding/tree/main/Distributed-DeepLearning/EVgraphs) 

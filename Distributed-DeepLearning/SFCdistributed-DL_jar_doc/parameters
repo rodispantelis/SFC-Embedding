@@ -12,7 +12,7 @@ k 12
 % VNF life cycle duration
 duration 1620
 
-% Iterations; number of incoming request to be served during each simulation session
+% Iterations; number of incoming requests to be served during each simulation session
 iterations 6000
 
 % Path to store simulation log files; if not specified, files will be stored on working directory

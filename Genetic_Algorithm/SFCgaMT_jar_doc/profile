@@ -6,15 +6,15 @@ tokens var1 var2 var3 var4 var5
 %Define the parameters and their domains. 
 %Use the schema: <token> <minimum value>-<maximum value>
 
-var1 320 -  400
+var1 440 - 490
 
-var2 20 -  80
+var2 40 - 60
 
-var3 2 -  4
+var3 4 - 6
 
-var4 10 -  100
+var4 20 -  100
 
-var5 10 -  100
+var5 20 -  100
 
 %Defines the objective of the tuning procedure.
 %Set target to min if the objective is to minimize the output. Set max for maximizing the output.

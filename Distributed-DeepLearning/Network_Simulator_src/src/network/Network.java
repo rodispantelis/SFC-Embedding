@@ -464,7 +464,7 @@ public class Network {
 		
 		boolean invalid=false;
 
-		lastrequestsize=vnfgraph.getnodes();
+		//lastrequestsize=vnfgraph.getnodes();
 
 		errmess="";
 		

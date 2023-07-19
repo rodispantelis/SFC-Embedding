@@ -1,19 +1,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% simulation and network parameters %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% lines must not start with a blank space
+
 % Network type
 type fat-tree
-
-% Servers per rack; may override standard topology configuration
-servperrack 20
 
 % Server capacity
 nodecapacity 20.0
 
 % Parameter k; different usage in different topologies; even numbers only for fat-tree topologies
-k 4
+k 12
 
 % VNF life cycle duration
-duration 600
+duration 1620
 
 % Iterations; number of incoming request to be served during each simulation session
 iterations 6000
@@ -35,15 +32,15 @@ r2 5
 % default setup parameters
 % population size, generations, supergenerations, crossover and mutation probabilities
 
-popsize 322
+popsize 440
 
-generations 50
+generations 40
 
 supergens 4
 
-crossprob 60
+crossprob 50
 
-mutprob 30
+mutprob 20
 
 % set true or false to use or skip PAGA
 paga true

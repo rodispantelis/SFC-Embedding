@@ -42,14 +42,14 @@ public class Network {
 	/** racks */
 	public ArrayList<Rack> racks=new ArrayList<Rack>();	
 	/** switches */
-	ArrayList<Switch> switches=new ArrayList<Switch>();	
+	public ArrayList<Switch> switches=new ArrayList<Switch>();	
 	/** links */
 	public ArrayList<Link> links=new ArrayList<Link>();	
 	/** embedded Serve Function Chains */
 	ArrayList<SFC> embeddedSFCs=new ArrayList<SFC>();	
 	/** VNF lifecycle duration */
 	int duration=0;											
-	//Edge Vector coder-decoder
+	/** Edge Vector coder-decoder */
 	Codec cod=new Codec();
 	/** embedded chains counter */
 	int embchains=0;
@@ -123,21 +123,16 @@ public class Network {
 	}
 	
 	//racks and switches parameters
-	
-	/** add server inter-rack ink */
-	public void addserveroutlink(int id, int n1, int n2, int type) {
-		links.set(cod.coder(n1, n2), new Link(cod.coder(n1, n2), n1, n2, type, false));
-	}
-	
+
 	/** add server intra-rack link */
 	public void addserverintlink(int id, int n1, int n2, int type) {
 		links.set(cod.coder(n1, n2), new Link(cod.coder(n1, n2), n1, n2, type, true));
 	}
 	
-	/** add link */
-	public void addlink(int id, int n1, int n2, int type) {
-		links.set(cod.coder(n1+servers, n2+servers), 
-				new Link(cod.coder(n1+servers, n2+servers), n1+servers, n2+servers, type));
+	/** add server inter-rack link */
+	public void addswitchlink(int id, int n1, int n2, int type) {
+		links.set(cod.coder(n1, n2), new Link(cod.coder(n1, n2), n1, n2, type, false));
+		links.get(cod.coder(n1, n2)).setcapacity(10.0);
 	}
 	
 	/** associate racks and switches */
@@ -150,31 +145,7 @@ public class Network {
 	public void rack2pod(int r, int p) {
 		racks.get(r).setpod(p);
 	}
-	
-	//set switch parameters
-	
-	/** add a switch given switch id */
-	public void addswitch(int id) {
-		switches.add(new Switch(id+servers));
-	}
-	
-	/** add a link that connects switches */
-	public void switch2switchedge(int switfrom, int switto, String stype) {
-		switches.get(switfrom).connetto(switto+servers);
-		switches.get(switto).settype(stype);
-	}
-	
-	/** add a link that connects switches */
-	public void switch2switch(int switfrom, int switto, String stype) {
-		switches.get(switfrom).connetto(switto+servers);
-		switches.get(switto).settype(stype);
-	}
-	
-	/** add a link that connects switches */
-	public void switch2switch(int switfrom, int switto) {
-		switches.get(switfrom).connetto(switto+servers);
-	}
-	
+
 	//Routing paths
 	
 	/** returns the path between two given nodes */
@@ -214,47 +185,18 @@ public class Network {
 			int[] a= {n1+servers};
 			return a;
 		}else if((racks.get(n1).getpod()==racks.get(n2).getpod())){
-			int nn1=0,nn2=0;
-			if((n1%(k/2))>(k/2)) {
-				nn1=1;
-			}
-			if((n2%(k/2))>(k/2)) {
-				nn2=1;
-			}
-			nn1+=racks.size()+(n1/(k/2));
-			nn2+=racks.size()+(n2/(k/2));
-			if(nn1==nn2) {
-				int[] a= {n1+servers,nn1+servers,n2+servers};
-				return a;
-			}else {
-				int[] a= {n1+servers,nn1+servers,(nn1+k*(k/2)+servers),nn2+servers,n2+servers};
-				return a;
-			}
+			
+			int[] a= {n1+servers,n1+servers+2*(k/2)*(k/2),n2+servers};
+			return a;
+			
 		}else {	//different pods
-			int nn1=0,nn2=0,nnn1=0,nnn2=0,core=0;
-			if((n1%(k/2))>(k/2)) {
-				nn1=1;
-			}
-			if((n2%(k/2))>(k/2)) {
-				nn2=1;
-			}
+			int nn1=0,nn2=0,core=0;
 			
-			nn1+=racks.size()+(n1/(k/2));
-			nn2+=racks.size()+(n2/(k/2));
+			nn1=(racks.get(n1).getpod())*(k/2)+(k*(k/2));
+			nn2=(racks.get(n2).getpod())*(k/2)+(k*(k/2));
+			core=k*k+((racks.get(n1).getpod())+(racks.get(n2).getpod()))/2/k/4;
+			int[] a= {n1+servers, nn1+servers, core+servers, nn2+servers, n2+servers};
 			
-			if((nn1%(k/2))>0) {
-				nnn1-=nn1%(k/2);
-			}
-			
-			if((nn2%(k/2))>0) {
-				nnn2-=nn2%(k/2);
-			}
-			nnn1+=racks.size()+(n1/(k/2))+k*(k/2);
-			nnn2+=racks.size()+(n2/(k/2))+k*(k/2);
-			
-			core=racks.size()+2*k*(k/2)+nn1%(k/2);		
-			
-			int[] a= {n1+servers,nn1+servers,nnn1+servers,core+servers,nnn2+servers,nn2+servers,n2+servers};
 			return a;
 		}
 	}
@@ -522,7 +464,7 @@ public class Network {
 		
 		boolean invalid=false;
 
-		lastrequestsize=vnfgraph.getnodes();
+		//lastrequestsize=vnfgraph.getnodes();
 
 		errmess="";
 		

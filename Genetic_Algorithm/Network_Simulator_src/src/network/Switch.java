@@ -27,6 +27,11 @@ public class Switch {
 		type=s;
 	}
 	
+	/** get switch type */
+	public String gettype() {
+		return type;
+	}
+	
 	/** print connected servers */
 	public String getconnections() {
 		return id+"|"+type+"|"+connectedto.toString();
@@ -35,5 +40,15 @@ public class Switch {
 	/** get connected servers */
 	public ArrayList<Integer> getcons() {
 		return connectedto;
+	}
+	
+	/** set id */
+	public void setid(int s) {
+		id=s;
+	}
+	
+	/** get id */
+	public int getid() {
+		return id;
 	}
 }

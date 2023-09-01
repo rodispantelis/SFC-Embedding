@@ -10,4 +10,5 @@ A simple way to test these algorithms is to download the whole repository and ru
 
 ---
 [1] Rodis P. and Papadimitriou P. (2023). "Unsupervised Deep Learning for Distributed Service Function Chain Embedding," 
-in *IEEE Access*, [doi: 10.1109/ACCESS.2023.3308492.](https://doi.org/10.1109/ACCESS.2023.3308492)
+in *IEEE Access*, vol. 11, pp. 91660-91672, 2023, [doi: 10.1109/ACCESS.2023.3308492](https://doi.org/10.1109/ACCESS.2023.3308492). [pdf](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10229131)
+

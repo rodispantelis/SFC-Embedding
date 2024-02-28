@@ -1,4 +1,4 @@
-![ ](logo.png)
+![ ](logo.jpg)
 # SFC-Embedding
 
 [Service Function Chain Embedding. Algorithms and simulation tools.](https://rodispantelis.github.io/SFC-Embedding/)

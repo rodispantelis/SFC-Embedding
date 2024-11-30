@@ -1,13 +1,16 @@
 ![ ](logo.jpg)
 # SFC-Embedding 
 
+## Across Computing Continuum v.2
 <details>
-## <summary>Across Computing Continuum</summary>
-
+<summary> </summary>
+work in progress
 </details>
 
-<details>
-## <summary>In Dataceters</summary>
+## In Datacenters v.1
+
+<details open>
+<summary> </summary>
 
 [Service Function Chain Embedding. Algorithms and simulation tools.](https://rodispantelis.github.io/SFC-Embedding/)
 

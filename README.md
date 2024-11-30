@@ -1,12 +1,17 @@
 # SFC-Embedding 
 
-## across Computing Continuum (version 2)
+## across Computing Continuum 
+
+### version 2
+
 <details>
 <summary>work in progress</summary>
 
 </details>
 
-## in standalone Data Centers (version 1)
+## in standalone Data Centers 
+
+### version 1 [1], [2]
 
 <details>
 <summary>more details</summary>

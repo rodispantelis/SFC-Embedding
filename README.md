@@ -14,7 +14,7 @@
 ### version 1 used in [1], [2]
 
 <details open>
-<summary>more details</summary>
+<summary> </summary>
 
 [Service Function Chain Embedding. Algorithms and simulation tools.](https://rodispantelis.github.io/SFC-Embedding/)
 

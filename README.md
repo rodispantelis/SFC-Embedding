@@ -1,9 +1,13 @@
 ![ ](logo.jpg)
 # SFC-Embedding 
 
-<details open>
+<details>
+## <summary>Across Computing Continuum</summary>
 
-<summary>## SFC-Embedding in Dataceters</summary>
+</details>
+
+<details>
+## <summary>In Dataceters</summary>
 
 [Service Function Chain Embedding. Algorithms and simulation tools.](https://rodispantelis.github.io/SFC-Embedding/)
 

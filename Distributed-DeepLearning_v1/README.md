@@ -1,16 +1,16 @@
-# Distributed Deep Learning for SFC-Embedding
+# Distributed Deep Learning for SFC-Embedding v.1
 
 Distributed DL for efficient SFC-Embedding, includes the option of running a distributed greedy algorithm for comparison. 
 Includes an advanced network simulator designed for SFC embedding simulations and experimentation; 
 a collection of VNF-graphs in [Edge Vector format](https://github.com/rodispantelis/EdgeVector) 
 
-* **SFCdistributed-DL**. [The Deep Learning algorithm.](https://github.com/rodispantelis/SFC-Embedding/tree/main/Distributed-DeepLearning/SFCdistributed-DL_jar_doc)
+* **SFCdistributed-DL_v1**. [The Deep Learning algorithm.](SFCdistributed-DL_jar_doc)
 
-* **ANN-DL**. [Artificial Neural Network designed for distributed DL.](https://github.com/rodispantelis/SFC-Embedding/tree/main/Distributed-DeepLearning/ANN-DL_jar_doc)
+* **ANN-DL_v1**. [Artificial Neural Network designed for distributed DL.](ANN-DL_jar_doc)
 
-* **Network_Simulator**. [The network simulator.](https://github.com/rodispantelis/SFC-Embedding/tree/main/Distributed-DeepLearning/Network_Simulator_jar_doc)
+* **Network_Simulator_v1**. [The network simulator.](Network_Simulator_jar_doc)
 
-* **EVgraphs**. [Collections of VNF-graphs.](https://github.com/rodispantelis/SFC-Embedding/tree/main/Distributed-DeepLearning/EVgraphs) 
+* **EVgraphs_v1**. [Collections of VNF-graphs.](EVgraphs) 
 
 A simple way to test these algorithms is to download the whole repository and run the jar files from console (use jdk-15) without changing the file structure.
 

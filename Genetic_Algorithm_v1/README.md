@@ -8,7 +8,7 @@ a simple baseline greedy algorithm useful for comparison with more advanced algo
 
 * **Network_Simulator_v1**. [The network simulator.](Network_Simulator_jar_doc)
 
-* **EVgraphs_v1**. [Collections of VNF-graphs.](Genetic_Algorithm/EVgraphs) 
+* **EVgraphs_v1**. [Collections of VNF-graphs.](EVgraphs) 
 
 * **SFCbaseline_v1**. [Baseline greedy algorithm .](SFCbaseline_jar_doc)
 

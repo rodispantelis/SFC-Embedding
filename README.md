@@ -2,7 +2,7 @@
 
 ## across Computing Continuum 
 
-#### version 2
+### version 2
 
 <details>
 <summary>work in progress</summary>
@@ -11,9 +11,9 @@
 
 ## in standalone Data Centers 
 
-#### version 1 used in [1], [2]
+### version 1 used in [1], [2]
 
-<details>
+<details open>
 <summary>more details</summary>
 
 [Service Function Chain Embedding. Algorithms and simulation tools.](https://rodispantelis.github.io/SFC-Embedding/)

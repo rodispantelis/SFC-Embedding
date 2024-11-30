@@ -1,7 +1,9 @@
 ![ ](logo.jpg)
-# SFC-Embedding {.tabset}
+# SFC-Embedding 
 
-## SFC-Embedding in single DataCenter
+## versions {.tabset .tabset-pills}
+
+### SFC-Embedding in single DataCenter
 
 [Service Function Chain Embedding. Algorithms and simulation tools.](https://rodispantelis.github.io/SFC-Embedding/)
 
@@ -20,6 +22,8 @@ A simple way to test these algorithms is to download the whole repository and ru
 [2] Rodis P. and Papadimitriou P. (2023). "Intelligent and Resource-Conserving Service Function Chain (SFC) Embedding," 
 *Journal of Network and Systems Management*, 31, 81. [doi: 10.1007/s10922-023-09771-y](https://doi.org/10.1007/s10922-023-09771-y). [pdf](https://link.springer.com/content/pdf/10.1007/s10922-023-09771-y.pdf?pdf=button)
 
-## SFC-Embedding across Computing Continuum
+### SFC-Embedding across Computing Continuum
 
 x
+
+## {-}

@@ -1,16 +1,20 @@
 # SFC-Embedding 
 
 <details>
-<summary><H2>across Computing Continuum</H2></summary>
+<summary><H2>across Computing Continuum</H2> v.2 12.2024</summary>
+
+Algorithms and simulation tools for Service Function Chain deployment across the Computing Continuum.
+
+work in progress
 
 </details>
 
 ---
 
 <details open>
-<summary><H2>in Data Centers</H2></summary>
+<summary><H2>in Data Centers</H2> v.1 08.2023</summary>
 
-[Service Function Chain Embedding. Algorithms and simulation tools.](https://rodispantelis.github.io/SFC-Embedding/)
+Algorithms and simulation tools for [Service Function Chain Embedding in Data Centers.](https://rodispantelis.github.io/SFC-Embedding/)
 
 * **Distributed Machine Learning**. [A Distribute Deep Learning algorithm for SFC-Embedding.](Distributed-DeepLearning_v1) [1]
 

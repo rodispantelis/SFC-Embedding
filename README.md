@@ -5,6 +5,8 @@
 
 [Algorithms and simulation tools for Service Function Chain deployment across the Computing Continuum.](Computing_Continuum)
 
+Incorporates the following embedding methods
+
 * **Hybrid framework**.
 
 * **Genetic Algorithm**.
@@ -16,7 +18,7 @@
 A simple way to test these algorithms is to download the whole repository and run the executable [.jar files](Computing_Continuum/jar), 
 from console (use jdk-18) without changing the file structure.
 
-[Documentation.](index.html)
+[Documentation.](https://rodispantelis.github.io/SFC-Embedding/Computing_Continuum/index.html)
 
 </details>
 

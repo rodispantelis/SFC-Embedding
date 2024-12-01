@@ -12,7 +12,8 @@ a collection of VNF-graphs in [Edge Vector format](https://github.com/rodispante
 
 * **EVgraphs_v1**. [Collections of VNF-graphs.](EVgraphs) 
 
-A simple way to test these algorithms is to download the whole repository and run the jar files from console (use jdk-15) without changing the file structure.
+A simple way to test these algorithms is to download the repository and run the executable .jar file in the [Deep Learning directory](SFCdistributed-DL_jar_doc) 
+from console (use jdk-15) without changing the file structure.
 
  [Service Function Chain Embedding.](https://rodispantelis.github.io/SFC-Embedding/DataCenters)
  

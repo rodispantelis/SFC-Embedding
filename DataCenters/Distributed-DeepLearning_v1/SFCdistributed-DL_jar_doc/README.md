@@ -9,4 +9,12 @@ DL for SFC-Embedding. Its operation is determined by three editable files.
 
 Besides network simulation output, the algorithm also outputs the **model.csv** file that includes the models that were generated during simulation.
 
+run:
+
+```
+
+java -Xmx4g -jar SFCdistrDL.jar
+
+```
+
 [More details.](https://rodispantelis.github.io/SFC-Embedding/DataCenters)

@@ -11,4 +11,12 @@ Besides network simulation output, the algorithm outputs two more files.
 * **adaptationlog.csv**. The adaptation of optimal setup for the operation of the algorithm during simulation.
 * **knowledgeDB.csv**. Optimal setups that were computed by Parameter Adjustment Genetic Algorithm (PAGA) during simulation.
 
+run:
+
+```
+
+java -Xmx4g -jar SFCgaMT.jar
+
+```
+
 [More details.](https://rodispantelis.github.io/SFC-Embedding/DataCenters)

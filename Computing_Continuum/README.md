@@ -19,7 +19,5 @@ java -Xmx4g -jar SFC-E_Simulation_v2.jar
 
 ```
 
----
+[Documentation.](https://rodispantelis.github.io/SFC-Embedding/Computing_Continuum/index.html)
 
-A simple way to test these algorithms is to download the whole repository and run the executable .jar files from console (use jdk-15) 
-without changing the file structure.

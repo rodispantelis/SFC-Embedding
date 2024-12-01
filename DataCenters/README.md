@@ -1,30 +1,15 @@
-# SFC-Embedding 
+# SFC-Embedding in Data Centers
 
-<details>
-<summary><H2>across Computing Continuum</H2> version 2-12.2024</summary>
+Algorithms and simulation tools for Service Function Chain Embedding in Data Centers. version 1-08.2023.
 
-[Algorithms and simulation tools for Service Function Chain deployment across the Computing Continuum.](Computing_Continuum)
+* **Distributed Machine Learning**. [A Distribute Deep Learning algorithm for SFC-Embedding.](Distributed-DeepLearning_v1) [1]
 
-work in progress
-
-</details>
-
----
-
-<details open>
-<summary><H2>in Data Centers</H2> version 1-08.2023, used in [1,2]</summary>
-
-[Algorithms and simulation tools for Service Function Chain Embedding in Data Centers.](DataCenters)
-
-* **Distributed Machine Learning**. [A Distribute Deep Learning algorithm for SFC-Embedding.](DataCenters/Distributed-DeepLearning_v1) [1]
-
-* **Genetic Algorithm**. [A MultiThreaded Genetic Algorithm for SFC-Embedding.](DataCenters/Genetic_Algorithm_v1) [2]
+* **Genetic Algorithm**. [A MultiThreaded Genetic Algorithm for SFC-Embedding.](Genetic_Algorithm_v1) [2]
 
 [Mored details.](https://rodispantelis.github.io/SFC-Embedding/DataCenters)
 
 A simple way to test these algorithms is to download the whole repository and run the jar files from console (use jdk-15) without changing the file structure.
 
-</details>
 
 ---
 [1] Rodis P. and Papadimitriou P. (2023). "Unsupervised Deep Learning for Distributed Service Function Chain Embedding," 

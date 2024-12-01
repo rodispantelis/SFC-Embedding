@@ -1,0 +1,49 @@
+%set network type
+%options: ff (feedforward), vff (feedforward hidden with layer variations), 
+%frn (fully recurrent network), fb (feedback network)
+
+type ff
+
+%number of input nodes
+
+inputs 20
+
+%number of output nodes
+
+outputs 9
+
+%number of hidden layers
+
+hidden 2
+
+%for "frn" in "nodes" parameter set number of nodes in network
+%for "ff" or "fb" set number of nodes in every hidden layer
+%for "vff" it will be ignored
+
+nodes 6
+
+%for "vff" where each layers has a different number of nodes set:
+%hnodes 1 10 (10 nodes in the first hidden layer)
+%hnodes 2 20 (20 nodes in the second hidden layer etc.)
+
+%set activation function for input and hidden layers
+%options: linear, sigmoid, threshold, bpsigm (bipolar sigmoid)
+%relu (rectified linear unit), htf (Hyperbolic Tangent Function)
+
+% htf, bpsigm
+
+function bpsigm
+
+%set output function
+
+ofunction linear
+
+%set bias
+
+bias 10
+
+%set edge weight domain, upper and lower bounds
+
+upper 10
+
+lower -10

@@ -1,4 +1,4 @@
-# Distributed Deep Learning algorithm
+# Distributed Deep Learning algorithm v.1
 
 DL for SFC-Embedding. Its operation is determined by three editable files.
 

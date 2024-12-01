@@ -1,4 +1,4 @@
-# Network Simulator
+# Network Simulator v.1
 
 It is an advanced network simulator designed for SFC embedding simulations and experimentation.
 Currently it supports 3-tier fat-tree topologies that are comonly used in modern datacenters.

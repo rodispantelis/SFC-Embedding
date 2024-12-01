@@ -1,0 +1,8 @@
+%Configuration for running the Parameter Adjustment Genetic Algorithm.
+%Set supergenerations equal to 1 for the simple genetic algorithm configuration.
+
+population 30
+generations 30
+supergenerations 2
+crossover_probability 0.85
+mutation_probability 0.05

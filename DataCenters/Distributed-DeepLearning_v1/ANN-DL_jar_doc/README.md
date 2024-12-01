@@ -1,4 +1,4 @@
-# Artificial Neural Network
+# Artificial Neural Network v.1
 
 The library is an object oriented implementation of an Artificial Neural Network.
 It is trained by a Genetic Algorithm and is suitable for Unsupervised Learning projects.

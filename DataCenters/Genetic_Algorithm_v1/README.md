@@ -13,6 +13,6 @@ a simple baseline greedy algorithm useful for comparison with more advanced algo
 * **SFCbaseline v.1**. [Baseline greedy algorithm .](SFCbaseline_jar_doc)
 
 A simple way to test these algorithms is to download the repository and run the executable .jar file in the [GA directory](SFCgaMT_jar_doc) 
-from console (use jdk-15) without changing the file structure.
+from console (use jdk-18) without changing the file structure.
 
  [Service Function Chain Embedding.](https://rodispantelis.github.io/SFC-Embedding/DataCenters)

@@ -1,4 +1,4 @@
-# SFC-Embedding in Data Centers
+# SFC-Embedding in Data Centers v.1
 
 Algorithms and simulation tools for Service Function Chain Embedding in Data Centers. version 1-08.2023.
 
@@ -8,7 +8,7 @@ Algorithms and simulation tools for Service Function Chain Embedding in Data Cen
 
 [Mored details.](https://rodispantelis.github.io/SFC-Embedding/DataCenters)
 
-A simple way to test these algorithms is to download the whole repository and run the jar files from console (use jdk-15) without changing the file structure.
+A simple way to test these algorithms is to download the whole repository and run the jar files from console (use jdk-18) without changing the file structure.
 
 
 ---

@@ -22,7 +22,8 @@ work in progress
 
 [Mored details.](https://rodispantelis.github.io/SFC-Embedding/DataCenters)
 
-A simple way to test these algorithms is to download the whole repository and run the jar files from console (use jdk-15) without changing the file structure.
+A simple way to test these algorithms is to download the whole repository and run the executable .jar files from console (use jdk-15) 
+without changing the file structure.
 
 </details>
 

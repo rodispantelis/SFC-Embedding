@@ -14,6 +14,6 @@ a collection of VNF-graphs in [Edge Vector format](https://github.com/rodispante
 
 A simple way to test these algorithms is to download the whole repository and run the jar files from console (use jdk-15) without changing the file structure.
 
- [Service Function Chain Embedding.](https://rodispantelis.github.io/SFC-Embedding/)
+ [Service Function Chain Embedding.](https://rodispantelis.github.io/SFC-Embedding/DataCenters)
  
  

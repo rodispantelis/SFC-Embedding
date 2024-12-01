@@ -21,100 +21,23 @@ border-radius: 5px;
 <table>
 <tr>
         <td style="border: 1px solid black; border-radius: 5px; vertical-align: top;">
-            <h3>Distributed Deep Learning</H3>
-			It is a distributed algorithm that uses Unsupervised Deep Learning for the efficient computation of the SFC-E problem.<br>
-			The Deep Neural Network of the algorithm is trained by a Genetic Algorithm.<br>
-			A distributed greedy algorithm is also included for comparison with the DL algorithm.<br>
-			<a target="_blank" href="https://github.com/rodispantelis/SFC-Embedding/tree/main/Distributed-DeepLearning_v1/SFCdistributed-DL_src">
-			source code</a> in eclipse project,
-			<a target="_blank" href="https://github.com/rodispantelis/SFC-Embedding/tree/main/Distributed-DeepLearning_v1/SFCdistributed-DL_jar_doc">
-			jar file</a> run: "jave -jar SFCdistrDL.jar",			
-			<a target="_blank" href="https://rodispantelis.github.io/SFC-Embedding/Distributed-DeepLearning_v1/SFCdistributed-DL_jar_doc/doc/index.html">documentation</a>.
+            <a target="_blank" href="Computing_Continuum"><h3>Across Computing Continuum</H3></a>
+			<p> Work in progress.</p>
+			
         </td>
     </tr>
 	<tr>
         <td style="border: 1px solid black; border-radius: 5px; vertical-align: top;">
-            <h3>Genetic Algorithm</H3>
-            This is a Genetic Algorithm that embodies lots of innovations and provides near optimal solutions<br>
-			for the SFC-E problem combining effectiveness an efficiency.<br>
-			<a target="_blank" href="https://github.com/rodispantelis/SFC-Embedding/tree/main/Genetic_Algorithm_v1/SFCgaMT_src">
-			source code</a> in eclipse project,
-			<a target="_blank" href="https://github.com/rodispantelis/SFC-Embedding/tree/main/Genetic_Algorithm_v1/SFCgaMT_jar_doc">
-			jar file</a> run: "jave -jar SFCgaMT.jar",			
-			<a target="_blank" href="https://rodispantelis.github.io/SFC-Embedding/Genetic_Algorithm_v1/SFCgaMT_jar_doc/doc/index.html">documentation</a>.
-
-		    <h3>Baseline greedy algorithm</H3>
-			A simple greedy algorithm mostly used for comparison with the Genetic Algorithm.<br>
-			<a target="_blank" href="https://github.com/rodispantelis/SFC-Embedding/tree/main/Genetic_Algorithm_v1/SFCbaseline_src">
-			source code</a> in eclipse project, 
-			<a target="_blank" href="https://github.com/rodispantelis/SFC-Embedding/tree/main/Genetic_Algorithm_v1/SFCbaseline_jar_doc">
-			jar file</a> run: "jave -jar SFCbaseline.jar", 
-			<a target="_blank" href="https://rodispantelis.github.io/SFC-Embedding/Genetic_Algorithm_v1/SFCbaseline_jar_doc/doc/index.html">documentation</a>.
+            <a target="_blank" href="DataCenters"><h3>in Data Centers</H3></a>
+            Algorithms and simulation tools for Service Function Chain Embedding in Data Centers.
         </td>
     </tr>
-    <tr>
-        <td style="border: 1px solid black; border-radius: 5px; vertical-align: top;">
-            <h3>Network Simulator</H3>
-			It is an advanced network simulator integrated in every algorithm, designed for SFC embedding simulations.<br>
-			Currently it supports 3-tier fat-tree topologies that are comonly used in modern datacenters.<br>
-			The simulator is written in Java 8 and it is only necessary to add the project<br>
-			or the 
-			<a target="_blank" href="https://github.com/rodispantelis/SFC-Embedding/tree/main/Distributed-DeepLearning_v1/Network_Simulator_jar_doc">.jar file</a> 
-			in the classpath of any project that uses it; like in the algorithms presented here.<br>
-			The output is a log file describing the status of the network after each request, accepted or not.<br>
-			Use the -Xmx4g or the -Xmx6g option in case of large networks; larger than 5000 nodes.<br>
-			<a  onclick="show()" style="color:blue;cursor: pointer;text-decoration:underline;">fields description </a>,
-			<div id="fields" style="display:none">
-			1.request serial number<br>
-			2.hosted VNFs<br>
-			3.embedded Service Function Chains<br>
-			4.used bandwidth<br>
-			5.available bandwidth<br>
-			6.used CPU<br>
-			7.used servers; servers that host some VNF<br>
-			8.remaining cpu<br>
-			9.intra-rack traffic<br>
-			10.inter-rack traffic<br>
-			11.intra-server virtual traffic<br>
-			12.is last embedded rejected?<br>
-			13.acceptance ratio<br>
-			14.request revenue<br>
-			15.embedding cost<br>
-			16.cost/revenue ratio<br>
-			17.used physical links; links with traffic<br>
-			18.Size of VNF-graph<br>
-			19.Remaining intra-rack bandwidth<br>
-			20.Remaining outer-rack bandwidth<br>
-			</div>
-			<a target="_blank" href="https://rodispantelis.github.io/SFC-Embedding/Genetic_Algorithm_v1/Network_Simulator_jar_doc/doc">documentation</a>.
-        </td>
-	</tr>
-	    <tr>
-        <td style="border: 1px solid black; border-radius: 5px; vertical-align: top;">
-            <h3>VNF-graphs</H3>
-			A small collection of VNF-graphs  in <a target="_blank" href="https://rodispantelis.github.io/EdgeVector/">Edge Vector format</a> 
-			suitable to be used as requests in embedding algorithms.<br>
-			The directory called "EVgraphs" should be in the same level as the directory that contains the algorithm.
-        </td>
-	</tr>
 </table>
-
-<br>
-<a target="_blank" href="https://github.com/rodispantelis/EdgeVector"> Edge Vector codec</a>
 
 <br><br>
 <small>The software provided in this repository is free software under Apache License Version 2.0, <br>
-except from Edge Vector codec that is under GNU General Public License v3.0.
-<br>
-Pantelis Rodis, 2023</small>
 
-<script type="text/javascript">
-function show(){
-	document.getElementById("fields").style.display="block";
-}
-function hide() {
-	document.getElementById("fields").style.display="none";
-}
-</script>
+Pantelis Rodis, 2024</small>
+
 </body>
 </html>

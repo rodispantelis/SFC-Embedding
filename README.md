@@ -1,7 +1,7 @@
 # SFC-Embedding 
 
 <details>
-<summary><H2>across Computing Continuum</H2> v.2 12.2024</summary>
+<summary><H2>across Computing Continuum</H2> version 2-12.2024</summary>
 
 Algorithms and simulation tools for Service Function Chain deployment across the Computing Continuum.
 
@@ -12,7 +12,7 @@ work in progress
 ---
 
 <details open>
-<summary><H2>in Data Centers</H2> v.1 08.2023</summary>
+<summary><H2>in Data Centers</H2> version 1-08.2023</summary>
 
 Algorithms and simulation tools for [Service Function Chain Embedding in Data Centers.](https://rodispantelis.github.io/SFC-Embedding/)
 

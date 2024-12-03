@@ -15,6 +15,8 @@ from console (use jdk-18 or higher) without changing the file structure.
 
 ```
 
+cd jar
+
 java -Xmx4g -jar SFC-E_Simulation_v2.jar
 
 ```

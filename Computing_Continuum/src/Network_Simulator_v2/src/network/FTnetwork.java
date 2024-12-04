@@ -581,15 +581,15 @@ public class FTnetwork {
 		
 		tempload=null;	
 		
-		
-		//check for bandwidth constraints
-		Double[] tempbandw=new Double[links.size()];
-		
-		for(int i=0;i<tempbandw.length;i++) {
-			tempbandw[i]=0.0;
-		}
-
 		if(!invalid && vnfgraph.hasspatial()) {
+			
+			//check for bandwidth constraints
+			Double[] tempbandw=new Double[links.size()];
+			
+			for(int i=0;i<tempbandw.length;i++) {
+				tempbandw[i]=0.0;
+			}
+		
 			for(int l=0;l<vnfgraph.getgraph().length;l++) {
 				if(vnfgraph.getgraph()[l]>0) {
 					int[] t1=cod.decoder(l);

@@ -101,6 +101,8 @@ crossprob2 50
 
 mutprob2 20
 
+% set true or false to use or skip PAGA
+paga false
 
 % set false to preserve previous stored NN models, set true to delete
 deletemodels false

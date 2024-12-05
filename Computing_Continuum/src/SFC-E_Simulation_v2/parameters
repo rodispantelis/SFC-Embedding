@@ -34,17 +34,17 @@ k 4
 %k 22
 
 % VNF life cycle duration
-% Duration 26
-%duration 1000000
+%duration 100
+duration 1000000
 %duration 608
 %duration 1620
-duration 14000
+%duration 14000
 
 % Iterations; number of incoming request to be served during each simulation session
-iterations 12000
+iterations 200
 
 % Path to VNFgraph files
-%vnfgraphs ../EVgraphs-Ireland/
+%vnfgraphs ../EVgraphs/
 vnfgraphs random
 
 % Spatial constriants for VNF-graph; true: read from file; false: no spatial constraints; 
@@ -90,11 +90,11 @@ popsize 80
 
 generations 40
 
-supergens 6
+supergens 4
 
-crossprob 80
+crossprob 50
 
-mutprob 40
+mutprob 20
 
 
 % setup parameters #2 used in DC embedding
@@ -103,7 +103,7 @@ popsize2 440
 
 generations2 40
 
-supergens2 2
+supergens2 4
 
 crossprob2 50
 

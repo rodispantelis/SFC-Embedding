@@ -676,6 +676,8 @@ public class Main extends Thread{
 		controller.setid(d);
 		controller.init();
 		
+		boolparams[1]=false;
+		
 		if(controller.isrejected()) {
 			domisrejected=true;
 		}else {

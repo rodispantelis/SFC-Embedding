@@ -362,8 +362,10 @@ public class GA_c {
 	
 	/** compute fitness for population */
 	public void genfit(){
-		genfit1(pop);
-		genfit1(pop2);
+		if(pop!= null && pop.length != 0) {
+		genfit1(pop);}
+		if(pop2 != null && pop2.length != 0) {
+		genfit1(pop2);}
 	}
 	
 	/** compute and store fitness on chromosome */

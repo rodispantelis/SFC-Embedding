@@ -1,5 +1,6 @@
 package sfc_ft_a;
 import java.io.File;
+import java.io.IOException;
 
 import services.VNFgraph;
 
@@ -146,6 +147,15 @@ public class DCcontroller extends Thread{
 		}else {
 			if(kdbf.exists()) {
 				kdb.loaddb(path+"knowledgeDB.csv");
+			}
+		}
+		
+		if(paga && !kdbf.exists()) {
+			try {
+				kdbf.createNewFile();
+				kdb.addsetup(defsetup);
+			}catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
 	}

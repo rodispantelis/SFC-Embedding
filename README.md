@@ -1,7 +1,7 @@
 # SFC-Embedding 
 
 <details open>
-<summary><H2>Algorithms and simulation tools version 2-12.2024</H2></summary>
+<summary><a href="algorithms_v2"><H2>Algorithms and simulation tools</H2> version 2-12.2024</a></summary>
 
 Incorporates the following embedding methods
 
@@ -11,7 +11,7 @@ Incorporates the following embedding methods
 
 * **Distributed Greedy algorithm**.
 
-A simple way to test these algorithms is to download the whole repository and run the executable [.jar files](Computing_Continuum/jar), 
+A simple way to test these algorithms is to download the whole repository and run the executable [.jar files](algorithms_v2/jar), 
 from console (use jdk-18) without changing the file structure.
 
 [Documentation.](https://rodispantelis.github.io/SFC-Embedding/algorithms_v2/index.html)
@@ -21,7 +21,7 @@ from console (use jdk-18) without changing the file structure.
 ---
 
 <details>
-<summary><H2>Algorithms and simulation tools version 1-08.2023</H2>, used in [1][2]</summary>
+<summary><a href="algorithms_v1"><H2>Algorithms and simulation tools version 1-08.2023</H2></a>, used in [1][2]</summary>
 
 * **Distributed Machine Learning**. [A Distribute Deep Learning algorithm for SFC-Embedding.](DataCenters/Distributed-DeepLearning_v1) [1]
 

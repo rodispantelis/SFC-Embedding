@@ -1,4 +1,4 @@
-# SFC-Embedding v.2
+# SFC-Embedding version 2
 
 Algorithms and simulation tools for Service Function Chain Embedding in Data Centers. version 2-12.2024.
 
@@ -21,5 +21,5 @@ java -Xmx4g -jar SFC-E_Simulation_v2.jar
 
 ```
 
-[Documentation.](https://rodispantelis.github.io/SFC-Embedding/Computing_Continuum/index.html)
+[Documentation.](https://rodispantelis.github.io/SFC-Embedding/algorithms_v2/index.html)
 

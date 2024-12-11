@@ -12,5 +12,5 @@
 
 * **SFCgaFT_v2**. Embedding GA for Fat-Tree topologies.
 
-[Documentation.](../index.html)
+[Documentation.](https://rodispantelis.github.io/SFC-Embedding/algorithms_v2/index.html)
 

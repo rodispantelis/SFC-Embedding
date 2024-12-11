@@ -1,9 +1,9 @@
 # SFC-Embedding 
 
 <details open>
-<summary><a href="algorithms_v2"><H2>Algorithms and simulation tools</H2> version 2-12.2024</a></summary>
+<summary><H2>Algorithms and simulation tools</H2> version 2-12.2024</summary>
 
-Incorporates the following embedding methods
+[Version 2](algorithms_v2) incorporates the following embedding methods
 
 * **Genetic Algorithm**.
 
@@ -21,7 +21,7 @@ from console (use jdk-18) without changing the file structure.
 ---
 
 <details>
-<summary><a href="algorithms_v1"><H2>Algorithms and simulation tools version 1-08.2023</H2></a>, used in [1][2]</summary>
+<summary><H2>Algorithms and simulation tools</H2> version 1-08.2023, used in [1][2]</summary>
 
 * **Distributed Machine Learning**. [A Distribute Deep Learning algorithm for SFC-Embedding.](DataCenters/Distributed-DeepLearning_v1) [1]
 

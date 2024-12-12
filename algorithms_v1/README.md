@@ -1,4 +1,4 @@
-# SFC-Embedding in Data Centers v.1
+# SFC-Embedding version 1
 
 Algorithms and simulation tools for Service Function Chain Embedding in Data Centers. version 1-08.2023.
 

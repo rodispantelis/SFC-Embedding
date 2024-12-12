@@ -23,9 +23,9 @@ from console (use jdk-18) without changing the file structure.
 <details>
 <summary><H2>Algorithms and simulation tools</H2> version 1-08.2023, used in [1][2]</summary>
 
-* **Distributed Machine Learning**. [A Distribute Deep Learning algorithm for SFC-Embedding.](DataCenters/Distributed-DeepLearning_v1) [1]
+* **Distributed Machine Learning**. [A Distribute Deep Learning algorithm for SFC-Embedding.](algorithms_v1/Distributed-DeepLearning_v1) [1]
 
-* **Genetic Algorithm**. [A MultiThreaded Genetic Algorithm for SFC-Embedding.](DataCenters/Genetic_Algorithm_v1) [2]
+* **Genetic Algorithm**. [A MultiThreaded Genetic Algorithm for SFC-Embedding.](algorithms_v1/Genetic_Algorithm_v1) [2]
 
 [Mored details.](https://rodispantelis.github.io/SFC-Embedding/algorithms_v1/index.html)
 

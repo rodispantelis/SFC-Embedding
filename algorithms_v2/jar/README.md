@@ -10,6 +10,8 @@ java -Xmx4g -jar SFC-E_Simulation_v2.jar
 
 Running parameters for all supported algorithms are defined in the following files
 
+* **SFC-E_Simulation_v2.jar**. Executable .jar file.
+
 * **parameters**. Parameters for running the simulation.
 
 * **nnprofile**. Artificial Neural Network topology.

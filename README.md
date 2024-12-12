@@ -27,7 +27,7 @@ from console (use jdk-18) without changing the file structure.
 
 * **Genetic Algorithm**. [A MultiThreaded Genetic Algorithm for SFC-Embedding.](algorithms_v1/Genetic_Algorithm_v1) [2]
 
-[Mored details.](https://rodispantelis.github.io/SFC-Embedding/algorithms_v1/index.html)
+[More details.](https://rodispantelis.github.io/SFC-Embedding/algorithms_v1/index.html)
 
 A simple way to test these algorithms is to download the whole repository and run the executable .jar files from console (use jdk-18) 
 without changing the file structure.

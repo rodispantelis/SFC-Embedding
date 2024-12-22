@@ -1,8 +1,8 @@
-%Configuration for running the Neural Network Training Genetic Algorithm.
+%Configuration for running the parameter tuning genetic algorithm.
 %Set supergenerations equal to 1 for the simple genetic algorithm configuration.
 
-population 30
-generations 30
-supergenerations 2
-crossover_probability 0.85
+population 40
+generations 40
+supergenerations 6
+crossover_probability 1
 mutation_probability 0.5

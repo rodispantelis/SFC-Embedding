@@ -10,7 +10,7 @@
 
 * **SFC-E_Simulation_v2**. Implements the simulation procedure.
 
-* **SFCgaFT_v2**. Embedding GA for Fat-Tree topologies.
+* **SFCgaFT_v2**. Embedding Genetic Algorithm for Fat-Tree topologies.
 
 [Documentation.](https://rodispantelis.github.io/SFC-Embedding/algorithms_v2/index.html)
 

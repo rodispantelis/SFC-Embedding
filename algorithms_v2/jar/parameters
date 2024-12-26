@@ -16,7 +16,7 @@ duration 1620
 % Iterations; number of incoming request to be served during each simulation session
 iterations 6000
 
-% Path to VNFgraph files
+% Set path to VNFgraph files or "random" for generation of random VNF-graphs
 %vnfgraphs ../EVgraphs/
 vnfgraphs random
 
@@ -36,11 +36,14 @@ maxsfcsize 9
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% embedding algorithm selection %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Algorithm selection mode: 
-% 1 DGR distributed greedy; 
+% 1 Distributed Greedy (DGR); 
+
+% Distributed Deep Learning method (DDL)
 % 2 DDL train and run Neural Network; 
 % 3 DDL train a new Neural Network for each request;
 % 4 DDL run only stored models; 
-% 5 GA embedding algorithm;
+
+% 5 Genetic Algorithm;
 
 mode 2
 
@@ -49,7 +52,7 @@ mode 2
 % Parameter to define number of nodes in the cluster; cluster size = fnodes * VNF size
 fnodes 4
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Genetic Algorithm parameters %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Embedding Genetic Algorithm parameters %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % default setup parameters used in hyper node graph embedding
 % population size, generations, supergenerations, crossover and mutation probabilities

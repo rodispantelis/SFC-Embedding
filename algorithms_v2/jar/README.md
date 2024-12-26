@@ -16,8 +16,8 @@ Running parameters for all supported algorithms are defined in the following fil
 
 * **nnprofile**. Artificial Neural Network topology.
 
-* **settings**.  Default configuration for running the Embedding Genetic Algorithm.
+* **settings**. Default configuration for running the Parameter Adjustment Genetic Algorithm.
 
-* **gasettings**. Configuration for running the Parameter Adjustment Genetic Algorithm.
+* **gasettings**. Configuration for running the Neural Network training Genetic Algorithm.
 
 * **profile**. The configuration and the parameters for running the Parameter Adjustment procedure.

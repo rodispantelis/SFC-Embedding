@@ -6,7 +6,7 @@
 
 * **Network_Simulator_v2**. Substrate network simulator.
 
-* **SFCdistributed-DL_v2**. Implements DDL algorithm.
+* **SFCdistributed-DL_v2**. Unsupervised Distibuted Deep Learning embedding algorithm.
 
 * **SFC-E_Simulation_v2**. Implements the simulation procedure.
 

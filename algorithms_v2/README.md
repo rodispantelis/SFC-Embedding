@@ -19,9 +19,9 @@ java -Xmx4g -jar SFC-E_Simulation_v2.jar
 
 ```
 
-The simulation procedure generates log file named simulationresult-distr-0.csv
+The simulation procedure generates log file named *simulationresult-distr-0.csv*
 <details>
-<summary><span style="color:blue"> see fields description </span></summary>
+<summary>see fields description</summary>
 
 1.Request serial number
 

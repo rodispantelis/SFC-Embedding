@@ -6,9 +6,7 @@ Algorithms and simulation tools for Service Function Chain Embedding in Data Cen
 
 * **[src](src)**. Source code in Eclipse projects.
 
-* **[topology](topology)**. Substrate network topology.
-
-* **EV-graphs**. Pre-defined Service Function Chains for simulation.
+* **[EV-graphs](EVgraphs)**. Pre-defined Service Function Chains for simulation.
 
 A simple way to test these algorithms is to download the whole repository and run the executable [.jar files](jar), 
 from console (use jdk-18 or higher) without changing the file structure.

@@ -8,6 +8,7 @@ type fat-tree
 nodecapacity 20.0
 
 % Parameter k; different usage in different topologies
+% in three layer Fat-Tree topologies defines the number of pods
 k 12
 
 % VNF life cycle duration

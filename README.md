@@ -3,7 +3,7 @@
 <details open>
 <summary><H2>Algorithms and simulation tools</H2> version 2-12.2024</summary>
 
-[Version 2](algorithms_v2) incorporates the following embedding methods
+[Version 2](algorithms_v2) incorporates improvements of the following embedding methods
 
 * **Genetic Algorithm**.
 

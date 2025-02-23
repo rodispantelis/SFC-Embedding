@@ -11,7 +11,7 @@ Algorithms and simulation tools for Service Function Chain Embedding in Data Cen
 A simple way to test these algorithms is to download the whole repository and run the executable [.jar files](jar), 
 from console (use jdk-18 or higher) without changing the file structure.
 
-```
+```shell
 
 cd jar
 

@@ -13,7 +13,7 @@ Besides network simulation output, the algorithm outputs two more files.
 
 run:
 
-```
+```console
 
 java -Xmx4g -jar SFCgaMT.jar
 

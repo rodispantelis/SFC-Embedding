@@ -11,7 +11,7 @@ Besides network simulation output, the algorithm also outputs the **model.csv** 
 
 run:
 
-```
+```console
 
 java -Xmx4g -jar SFCdistrDL.jar
 

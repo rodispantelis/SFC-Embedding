@@ -2,7 +2,7 @@
 
 Start the simulation by ruuning.
 
-```
+```console
 
 java -Xmx4g -jar SFC-E_Simulation_v2.jar
 
